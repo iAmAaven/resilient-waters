@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class DeliveryUI : MonoBehaviour
+{
+
+    public TextMeshProUGUI deliveryTimeText,
+        pickUpPointText, destinationText,
+        paycheckText, contrabandText;
+
+    public string[] places;
+    public Image packageGFX;
+    public Package activePackage;
+
+    public void UpdatePackageInfo(int delivery, string pickUp, string dest, int pay, string cont, Sprite gfx)
+    {
+        deliveryTimeText.text = delivery + " h";
+        pickUpPointText.text = pickUp;
+        destinationText.text = dest;
+        paycheckText.text = pay + "";
+        contrabandText.text = cont;
+        packageGFX.sprite = gfx;
+    }
+}

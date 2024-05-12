@@ -14,12 +14,16 @@ public class BoatMovement : MonoBehaviour
     [SerializeField] Animator boatAnim;
 
 
+    // HIDDEN
+    private ControlUI controlUI;
+
     // PRIVATES
     private Rigidbody2D rb;
     private Vector2 movementInput;
 
     void Start()
     {
+        controlUI = FindObjectOfType<ControlUI>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -30,31 +34,37 @@ public class BoatMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (movementInput != Vector2.zero)
+        if (controlUI.canPlayerMove == false)
         {
-            // Debug.Log("Boat speed: " + rb.velocity.magnitude);
-            boatAnim.SetBool("IsMoving", true);
-            rb.AddForce(transform.up * acceleration * movementInput.y);
+            if (movementInput != Vector2.zero)
+            {
+                boatAnim.SetBool("IsMoving", true);
+                rb.AddForce(transform.up * acceleration * movementInput.y);
 
-            float torque = -movementInput.x * rotationSpeed;
-            float clampedTorque = Mathf.Clamp(torque, -maxTorque, maxTorque);
-            rb.angularVelocity = clampedTorque;
+                float torque = -movementInput.x * rotationSpeed;
+                float clampedTorque = Mathf.Clamp(torque, -maxTorque, maxTorque);
+                rb.angularVelocity = clampedTorque;
+            }
+            else
+            {
+                boatAnim.SetBool("IsMoving", false);
+                rb.angularVelocity *= 0.9f;
+            }
+
+            if (movementInput.y == 0f)
+            {
+                rb.velocity *= 0.98f;
+            }
+
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
         }
         else
         {
-            boatAnim.SetBool("IsMoving", false);
-            rb.angularVelocity *= 0.9f;
-        }
-
-        if (movementInput.y == 0f)
-        {
             rb.velocity *= 0.98f;
-        }
-
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            boatAnim.SetBool("IsMoving", false);
         }
     }
-
 }
