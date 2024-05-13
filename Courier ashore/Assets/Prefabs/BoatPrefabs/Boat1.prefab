@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1244272758359363255}
   - component: {fileID: 1078452048674493852}
   - component: {fileID: 4675895385404910079}
+  - component: {fileID: 6834565436281708525}
   m_Layer: 0
   m_Name: Boat1
   m_TagString: Player
@@ -274,6 +275,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.2958288, y: 2.546527}
   m_Direction: 0
+--- !u!114 &6834565436281708525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967905389273603666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb9239dbc50ce24dae7e4bd88635c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boatCapacity: 3
+  receiverTrackerPrefab: {fileID: 3633617876576980743, guid: 43f0df247a719f741a7a5c17183c619e, type: 3}
+  packageItems: []
 --- !u!1 &3089607087529299365
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,5 +23,17 @@ public class DeliveryUI : MonoBehaviour
         paycheckText.text = pay + "";
         contrabandText.text = cont;
         packageGFX.sprite = gfx;
+        packageGFX.color = new Color(1, 1, 1, 1);
+    }
+
+    public void ClearPackageInfo()
+    {
+        deliveryTimeText.text = "";
+        pickUpPointText.text = "";
+        destinationText.text = "";
+        paycheckText.text = "";
+        contrabandText.text = "";
+        packageGFX.sprite = null;
+        packageGFX.color = new Color(0, 0, 0, 0);
     }
 }

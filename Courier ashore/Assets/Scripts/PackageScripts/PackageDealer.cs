@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PackageDealer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject packagePrefab;
+
+    private Boat boat;
     void Start()
     {
+        boat = FindObjectOfType<Boat>();
+        for (int i = 0; i < boat.boatCapacity; i++)
+        {
+            Instantiate(packagePrefab, transform);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DealNewPackage()
     {
+        Instantiate(packagePrefab, transform);
     }
 }
