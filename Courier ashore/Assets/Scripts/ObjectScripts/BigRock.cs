@@ -24,7 +24,7 @@ public class BigRock : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         GameObject otherObj = other.gameObject;
-        if (otherObj.tag == "Player")
+        if (otherObj.tag == "Player" && harvested == false)
         {
             if (whiteOutline != null)
                 whiteOutline.SetActive(true);
@@ -89,9 +89,7 @@ public class BigRock : MonoBehaviour
 
             if (harvestProgressBar.value >= harvestProgressBar.maxValue)
             {
-                harvestProgressBar.gameObject.SetActive(false);
-                Destroy(whiteOutline);
-                harvested = true;
+                BigRockHarvested();
                 break;
             }
 
@@ -117,5 +115,13 @@ public class BigRock : MonoBehaviour
             yield return new WaitForSeconds(harvestRate);
         }
         decreasing = false;
+    }
+
+    void BigRockHarvested()
+    {
+        harvestProgressBar.gameObject.SetActive(false);
+        Destroy(whiteOutline);
+        harvested = true;
+        FindObjectOfType<ResourceInventory>().DealResources(false);
     }
 }

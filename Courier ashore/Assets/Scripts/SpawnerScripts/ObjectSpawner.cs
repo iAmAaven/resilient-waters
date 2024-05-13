@@ -7,9 +7,11 @@ public class ObjectSpawner : MonoBehaviour
     public Transform objectParent;
     public GameObject[] objectPrefabs;
     public List<Transform> objectSpawnpoints = new List<Transform>();
-
+    public bool isIslandSpawner = false;
+    private IslandPackageManager islandPackageManager;
     void Start()
     {
+        islandPackageManager = FindObjectOfType<IslandPackageManager>();
         SpawnObjects();
     }
 
@@ -18,7 +20,12 @@ public class ObjectSpawner : MonoBehaviour
         foreach (GameObject currentObject in objectPrefabs)
         {
             Transform randomSpawnpoint = objectSpawnpoints[Random.Range(0, objectSpawnpoints.Count)];
-            Instantiate(currentObject, randomSpawnpoint.position, Quaternion.identity, objectParent);
+            GameObject newObject = Instantiate(currentObject, randomSpawnpoint.position, Quaternion.identity, objectParent);
+
+            if (isIslandSpawner == true)
+            {
+                islandPackageManager.islands.Add(newObject);
+            }
 
             objectSpawnpoints.Remove(randomSpawnpoint);
         }

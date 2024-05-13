@@ -7,13 +7,18 @@ using UnityEngine.UI;
 public class DeliveryButtons : MonoBehaviour
 {
     public Button[] deliveryInfoButtons;
-    public GameObject accepted;
+    public GameObject accepted, pickedUp, delivered;
+    public Slider denySlider;
+
+    private int deniesLeft;
     private DeliveryUI deliveryUI;
     private Package _activePackage;
     private IslandPackageManager islandPackageManager;
 
     void Start()
     {
+        deniesLeft = (int)denySlider.maxValue;
+
         islandPackageManager = FindObjectOfType<IslandPackageManager>();
         deliveryUI = FindObjectOfType<DeliveryUI>();
         if (deliveryUI != null && deliveryUI.activePackage == null)
@@ -40,13 +45,26 @@ public class DeliveryButtons : MonoBehaviour
     }
     public void DenyPackage()
     {
+        _activePackage = deliveryUI.activePackage;
+        CreditManager creditManager = FindObjectOfType<CreditManager>();
+
+        if (creditManager.credits >= 5 && deniesLeft > 0)
+        {
+            deniesLeft--;
+            denySlider.value = deniesLeft;
+            creditManager.AddCredits(-5);
+            FindObjectOfType<PackageDealer>().DealNewPackage();
+            Destroy(_activePackage.gameObject);
+            deliveryUI.ClearPackageInfo();
+        }
     }
     public void AcceptPackage()
     {
+        _activePackage = deliveryUI.activePackage;
         DisableButtons();
+        _activePackage.packageAccepted = true;
         accepted.SetActive(true);
-
-        // islandPackageManager
+        islandPackageManager.DistributePackageToIsland(_activePackage.pickUpPoint, _activePackage);
     }
     public void DemandMorePay()
     {
@@ -57,6 +75,15 @@ public class DeliveryButtons : MonoBehaviour
             deliveryUI.paycheckText.text = _activePackage.paycheck + "";
             _activePackage.demandedMorePay = true;
         }
+    }
+    public void CashPackageIn()
+    {
+        _activePackage = deliveryUI.activePackage;
+        FindObjectOfType<CreditManager>().AddCredits(_activePackage.paycheck);
+        delivered.SetActive(false);
+        deliveryUI.ClearPackageInfo();
+        FindObjectOfType<PackageDealer>().DealNewPackage();
+        Destroy(_activePackage.gameObject);
     }
 
     void DisableButtons()

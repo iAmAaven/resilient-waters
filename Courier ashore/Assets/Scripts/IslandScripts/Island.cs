@@ -5,14 +5,26 @@ using UnityEngine.UI;
 
 public class Island : MonoBehaviour
 {
+    [Header("Harvest stats")]
+    public float harvestRate = 0.5f;
+    public bool ableToHarvest = false;
+
+    [Header("References")]
     public Canvas harvestCanvas;
     public GameObject whiteOutline;
     public Slider harvestProgressBar;
-    public bool ableToHarvest = false;
-    public float harvestRate = 0.5f;
-    private bool harvested = false;
-    private bool harvesting = false;
-    private bool increasing = false, decreasing = false;
+
+
+    // PRIVATES
+
+    private bool harvested = false,     // Keeps track whether the island has already been harvested or not
+                                        // when false, this island can be harvested by pressing "Interact"
+    harvesting = false,                 // Keeps track whether the player is currently harvesting the island
+                                        // when false, the progress bar decreases, if not already at zero.
+    increasing = false,                 // Keeps track whether the coroutine "IncreaseHarvest()" is running
+                                        // when false, the coroutine can be started by pressing "Interact"
+    decreasing = false;                 // Keeps track whether the coroutine "DecreaseHarvest()" is running
+                                        // when false, the coroutine can be started by pressing "Interact"
 
     void Start()
     {
@@ -24,7 +36,7 @@ public class Island : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         GameObject otherObj = other.gameObject;
-        if (otherObj.tag == "Player")
+        if (otherObj.tag == "Player" && harvested == false)
         {
             if (whiteOutline != null)
                 whiteOutline.SetActive(true);
@@ -89,9 +101,7 @@ public class Island : MonoBehaviour
 
             if (harvestProgressBar.value >= harvestProgressBar.maxValue)
             {
-                harvestProgressBar.gameObject.SetActive(false);
-                Destroy(whiteOutline);
-                harvested = true;
+                IslandHarvested();
                 break;
             }
 
@@ -117,5 +127,13 @@ public class Island : MonoBehaviour
             yield return new WaitForSeconds(harvestRate);
         }
         decreasing = false;
+    }
+
+    void IslandHarvested()
+    {
+        harvestProgressBar.gameObject.SetActive(false);
+        Destroy(whiteOutline);
+        harvested = true;
+        FindObjectOfType<ResourceInventory>().DealResources(true);
     }
 }

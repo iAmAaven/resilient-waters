@@ -64,6 +64,7 @@ public class BoatMovement : MonoBehaviour
         else
         {
             rb.velocity *= 0.98f;
+            rb.angularVelocity *= 0.9f;
             boatAnim.SetBool("IsMoving", false);
         }
     }
