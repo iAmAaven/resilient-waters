@@ -5,13 +5,23 @@ using UnityEngine.UI;
 
 public class BigRock : MonoBehaviour
 {
-    public Canvas harvestCanvas;
-    public GameObject whiteOutline;
-    public Slider harvestProgressBar;
+    [Header("Harvest stats")]
     public bool ableToHarvest = false;
     public float harvestRate = 0.5f;
     private bool harvested = false;
     private bool harvesting = false;
+
+    [Header("Resource chances")]
+    public float coalChance;
+    public float ironChance;
+    public float goldChance;
+
+    [Header("References")]
+    public Canvas harvestCanvas;
+    public Slider harvestProgressBar;
+    public GameObject whiteOutline;
+
+    // PRIVATES
     private bool increasing = false, decreasing = false;
     private BoatMovement boatMovement;
 
@@ -133,6 +143,6 @@ public class BigRock : MonoBehaviour
         harvestProgressBar.gameObject.SetActive(false);
         Destroy(whiteOutline);
         harvested = true;
-        FindObjectOfType<ResourceInventory>().DealResources(false);
+        FindObjectOfType<ResourceInventory>().DealBigRockResources(coalChance, ironChance, goldChance);
     }
 }

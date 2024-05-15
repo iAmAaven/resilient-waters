@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public float bulletSpeed = 5f;
+    public float bulletSpeed = 15f;
     private Rigidbody2D rb;
 
     public Vector2 shootDirection;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, 10f);
     }
 
     void Update()
@@ -24,6 +25,10 @@ public class PlayerBullet : MonoBehaviour
         if (otherObj.tag == "Enemy")
         {
             otherObj.GetComponent<EnemyHP>().TakeDamage();
+            Destroy(gameObject);
+        }
+        else if (otherObj.tag == "Object" || otherObj.tag == "Island")
+        {
             Destroy(gameObject);
         }
     }

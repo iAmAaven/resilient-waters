@@ -90,23 +90,38 @@ public class Package : MonoBehaviour
     {
         if (deliveryTime == 2)
         {
-            paycheck = (int)(Random.Range(35, 46) * paycheckMultiplier);
+            paycheck = (int)(Random.Range(30, 41) * paycheckMultiplier);
         }
         else
         {
-            paycheck = (int)(Random.Range(10, 26) * paycheckMultiplier);
+            paycheck = (int)(Random.Range(10, 21) * paycheckMultiplier);
         }
     }
     void RandomizeContraband()
     {
         float randomChance = Random.Range(0f, 1f);
-        if (randomChance < 0.25f)
+
+        if (PlayerPrefs.GetString("CurrentShift") == "Day")
         {
-            isContraband = true;
+            if (randomChance < 0.25f)
+            {
+                isContraband = true;
+            }
+            else
+            {
+                isContraband = false;
+            }
         }
         else
         {
-            isContraband = false;
+            if (randomChance < 0.5f)
+            {
+                isContraband = true;
+            }
+            else
+            {
+                isContraband = false;
+            }
         }
     }
     void RandomSprite()

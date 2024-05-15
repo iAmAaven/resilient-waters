@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1082391756865595742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f9f3dbf19cebee146addd24ef97c1f42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0259bca0bb11da445ab916068b7e700a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,7 +143,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.1841, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1204644238894282920}
@@ -189,7 +189,7 @@ SpriteRenderer:
   m_SortingLayerID: 622349369
   m_SortingLayer: -2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f9f3dbf19cebee146addd24ef97c1f42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0259bca0bb11da445ab916068b7e700a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5089,6 +5089,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
+  startingRadius: 0
 --- !u!114 &3851866934395923321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5101,7 +5102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66802efdaebd645a877bf8892e80b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 5
+  enemyHealth: 4
   graphics: {fileID: 2327838037249403666}
 --- !u!195 &940621838238420999
 NavMeshAgent:
@@ -5112,16 +5113,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 8262762020566746893}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
-  m_Speed: 4
+  m_Radius: 3
+  m_Speed: 5.5
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 6
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 4
+  m_Height: 7
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -5157,6 +5158,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 2.5}
   m_Size: {x: 2, y: 3.5}
   m_Direction: 0

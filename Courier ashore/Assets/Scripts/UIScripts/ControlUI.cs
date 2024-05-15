@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
-    public GameObject menus, miniMap, health;
+    public GameObject menus, miniMap, health, clock;
     private BoatMovement boatMovement;
 
     void Start()
@@ -21,11 +21,12 @@ public class ControlUI : MonoBehaviour
 
     public void ToggleMenus()
     {
-        if (boatMovement != null && boatMovement.isPlayerHarvesting == false)
+        if (boatMovement != null && boatMovement.isPlayerHarvesting == false && boatMovement.playerPassedOut == false)
         {
             menus.SetActive(!menus.activeSelf);
             miniMap.SetActive(!menus.activeSelf);
             health.SetActive(!menus.activeSelf);
+            clock.SetActive(!menus.activeSelf);
 
             if (menus.activeSelf)
             {

@@ -10,20 +10,23 @@ public class BoatMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 3f;
     [SerializeField] float maxTorque = 0.5f;
 
-    [Header("References")]
-    [SerializeField] Animator boatAnim;
-
 
     // HIDDEN
     [HideInInspector] public bool canPlayerMove = true;
     [HideInInspector] public bool isPlayerHarvesting = false;
+    [HideInInspector] public bool playerPassedOut = false;
 
     // PRIVATES
+    private Animator boatAnim;
     private Rigidbody2D rb;
     private Vector2 movementInput;
 
     void Start()
     {
+        acceleration = PlayerPrefs.GetFloat("BoatSpeed", 5);
+        maxSpeed = acceleration;
+        boatAnim = GetComponentInChildren<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -34,7 +37,7 @@ public class BoatMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (canPlayerMove == true)
+        if (canPlayerMove == true && playerPassedOut == false)
         {
             if (movementInput != Vector2.zero)
             {

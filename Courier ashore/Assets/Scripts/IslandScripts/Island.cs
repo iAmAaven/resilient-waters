@@ -9,6 +9,12 @@ public class Island : MonoBehaviour
     public float harvestRate = 0.5f;
     public bool ableToHarvest = false;
 
+    [Header("Resource chances")]
+    public float stoneChance;
+    public float coalChance;
+    public float goldChance;
+
+
     [Header("References")]
     public Canvas harvestCanvas;
     public GameObject whiteOutline;
@@ -145,6 +151,6 @@ public class Island : MonoBehaviour
         harvestProgressBar.gameObject.SetActive(false);
         Destroy(whiteOutline);
         harvested = true;
-        FindObjectOfType<ResourceInventory>().DealResources(true);
+        FindObjectOfType<ResourceInventory>().DealIslandResources(stoneChance, coalChance, goldChance);
     }
 }
