@@ -3782,6 +3782,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   harvestRate: 0.05
   ableToHarvest: 0
+  stoneChance: 0.75
+  coalChance: 0.5
+  goldChance: 0.2
   harvestCanvas: {fileID: 1787593247139536611}
   whiteOutline: {fileID: 7363683805011151211}
   harvestProgressBar: {fileID: 6650371594464842382}

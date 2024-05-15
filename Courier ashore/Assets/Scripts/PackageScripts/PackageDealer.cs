@@ -14,7 +14,7 @@ public class PackageDealer : MonoBehaviour
         boat = FindObjectOfType<Boat>();
         for (int i = 0; i < boat.boatCapacity; i++)
         {
-            Instantiate(packagePrefab, transform);
+            DealNewPackage();
         }
     }
 
@@ -22,13 +22,25 @@ public class PackageDealer : MonoBehaviour
     {
         if (dayCycle != null)
         {
+            string shift = PlayerPrefs.GetString("CurrentShift", "Day");
+            GameObject newPackage;
+
             if (dayCycle.shiftFinished == false)
             {
-                Instantiate(packagePrefab, transform);
+                newPackage = Instantiate(packagePrefab, transform);
             }
             else
             {
-                Instantiate(shiftFinishedPrefab, transform);
+                newPackage = Instantiate(shiftFinishedPrefab, transform);
+            }
+
+            if (shift == "Day")
+            {
+                newPackage.GetComponent<Package>().paycheckMultiplier = 1;
+            }
+            else
+            {
+                newPackage.GetComponent<Package>().paycheckMultiplier = 1.5;
             }
         }
     }

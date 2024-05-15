@@ -69,22 +69,22 @@ public class ResourceInventory : MonoBehaviour
         SaveResources("Gem", gemAmount);
     }
 
-    public void DealResources(bool isIsland)
+    public void DealIslandResources(float stoneChance, float coalChance, float goldChance)
     {
-        if (isIsland)
-        {
-            woodAmount += Random.Range(minWood, maxWood + 1);
-            stoneAmount = RandomChanceAtResource(stoneAmount, 0.75f, 1, (maxStone + 1) / 2, "stone");
-            coalAmount = RandomChanceAtResource(coalAmount, 0.5f, 1, (maxCoal + 1) / 2, "coal");
-            goldAmount = RandomChanceAtResource(goldAmount, 0.25f, minGold, maxGold + 1, "gold");
-        }
-        else
-        {
-            stoneAmount += Random.Range(minStone, maxStone + 1);
-            coalAmount = RandomChanceAtResource(coalAmount, 0.75f, minCoal, maxCoal + 1, "coal");
-            ironAmount = RandomChanceAtResource(ironAmount, 0.5f, minIron, maxIron + 1, "iron");
-            goldAmount = RandomChanceAtResource(goldAmount, 0.33f, minGold, maxGold + 1, "gold");
-        }
+        woodAmount += Random.Range(minWood, maxWood + 1);
+        stoneAmount = RandomChanceAtResource(stoneAmount, stoneChance, 1, (maxStone + 1) / 2, "stone");
+        coalAmount = RandomChanceAtResource(coalAmount, coalChance, 1, (maxCoal + 1) / 2, "coal");
+        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
+
+        gemAmount = RandomChanceAtResource(gemAmount, 0.1f, minGem, maxGem + 1, "gem");
+        RefreshResources();
+    }
+    public void DealBigRockResources(float coalChance, float ironChance, float goldChance)
+    {
+        stoneAmount += Random.Range(minStone, maxStone + 1);
+        coalAmount = RandomChanceAtResource(coalAmount, coalChance, minCoal, maxCoal + 1, "coal");
+        ironAmount = RandomChanceAtResource(ironAmount, ironChance, minIron, maxIron + 1, "iron");
+        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
 
         gemAmount = RandomChanceAtResource(gemAmount, 0.1f, minGem, maxGem + 1, "gem");
         RefreshResources();

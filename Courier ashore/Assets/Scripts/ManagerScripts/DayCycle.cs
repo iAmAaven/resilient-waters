@@ -14,21 +14,24 @@ public class DayCycle : MonoBehaviour
     public TextMeshProUGUI timeText;
     public bool shiftStarted = false;
     public bool shiftFinished = false;
-    private float timer = 0f;
-    private string currentShift;
+
     [Header("Lighting")]
     public Light2D sunlight;
     public Color32 nightColor;
     public Color32 dayColor;
 
+
+    // PRIVATES
+    private float timer = 0f;
+    private string currentShift;
+    private bool isTextFlashing = false;
+    private BoatMovement boatMovement;
+
     void Start()
     {
-        currentShift = PlayerPrefs.GetString("CurrentShift");
-        if (string.IsNullOrEmpty(currentShift))
-        {
-            currentShift = "Day";
-            PlayerPrefs.SetString("CurrentShift", currentShift);
-        }
+        boatMovement = FindObjectOfType<BoatMovement>();
+        currentShift = PlayerPrefs.GetString("CurrentShift", "Day");
+        PlayerPrefs.SetString("CurrentShift", currentShift);
 
         StartCurrentShift(currentShift);
     }
@@ -50,11 +53,13 @@ public class DayCycle : MonoBehaviour
 
         if (shift == "Day")
         {
+            sunlight.color = dayColor;
             currentHour = dayShiftStart;
             timeText.text = currentHour + ":" + "00";
         }
         else
         {
+            sunlight.color = nightColor;
             currentHour = nightShiftStart;
             timeText.text = currentHour + ":" + "00";
         }
@@ -77,10 +82,14 @@ public class DayCycle : MonoBehaviour
 
             if (currentShift == "Day")
             {
-                if (currentHour == dayShiftPassOutHour)
+                if (boatMovement.playerPassedOut == false && currentHour == dayShiftPassOutHour)
                 {
                     NovaPassedOut();
                     return;
+                }
+                else if (currentHour == dayShiftPassOutHour - 1 && isTextFlashing == false)
+                {
+                    StartCoroutine(TextFlashing());
                 }
                 if (currentHour >= dayShiftEnd && shiftFinished == false)
                 {
@@ -93,6 +102,10 @@ public class DayCycle : MonoBehaviour
                 if (currentHour == nightShiftPassOutHour)
                 {
                     NovaPassedOut();
+                }
+                else if (currentHour == nightShiftPassOutHour - 1 && isTextFlashing == false)
+                {
+                    StartCoroutine(TextFlashing());
                 }
                 if (currentHour >= nightShiftEnd && shiftFinished == false)
                 {
@@ -110,7 +123,7 @@ public class DayCycle : MonoBehaviour
     void NovaPassedOut()
     {
         Debug.Log("Nova passed out");
-        SceneManager.LoadScene("HomeIsland");
+        FindObjectOfType<PassOut>().PassedOut();
     }
 
     IEnumerator LightChange(float lightFadeDuration, Color32 startColor, Color32 targetColor)
@@ -124,5 +137,20 @@ public class DayCycle : MonoBehaviour
             yield return null;
         }
         sunlight.color = targetColor;
+    }
+
+    IEnumerator TextFlashing()
+    {
+        isTextFlashing = true;
+
+        for (int i = 0; i < 20; i++)
+        {
+            timeText.color = new Color32(0, 0, 0, 0);
+            yield return new WaitForSeconds(0.1f);
+            timeText.color = new Color32(255, 255, 255, 255);
+            yield return new WaitForSeconds(0.1f);
+        }
+        timeText.color = new Color32(255, 255, 255, 255);
+        isTextFlashing = false;
     }
 }

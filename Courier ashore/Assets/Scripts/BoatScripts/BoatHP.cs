@@ -8,16 +8,25 @@ public class BoatHP : MonoBehaviour
     public int boatMaxHitPoints;
     public float dangerousBoatSpeed;
     public float damageCooldown;
-    public SpriteRenderer graphics;
 
+    private SpriteRenderer graphics;
     private HealthUI healthUI;
     private bool isAughFrames = false;
     private Rigidbody2D rb;
     private float timer;
+    private BoatMovement boatMovement;
 
     void Start()
     {
+        graphics = GetComponentInChildren<SpriteRenderer>();
+        dangerousBoatSpeed = PlayerPrefs.GetFloat("BoatSpeed") - 2f;
+        if (dangerousBoatSpeed < 4f)
+        {
+            dangerousBoatSpeed = 4f;
+        }
+        boatMovement = GetComponent<BoatMovement>();
         boatHitPoints = PlayerPrefs.GetInt("BoatHP");
+        boatMaxHitPoints = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10;
         if (boatHitPoints <= 0)
         {
             boatHitPoints = boatMaxHitPoints;
@@ -41,29 +50,33 @@ public class BoatHP : MonoBehaviour
 
     public void BoatTakeDamage(int damage)
     {
-        boatHitPoints -= damage;
-        timer = Time.time + damageCooldown;
-        Debug.Log("Boat took damage, HP: " + boatHitPoints);
-        if (isAughFrames == false)
+        if (boatMovement.playerPassedOut == false)
         {
-            StartCoroutine(AughFrames());
-        }
-        healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
-        PlayerPrefs.SetInt("BoatHP", boatHitPoints);
-
-        if (boatHitPoints <= 0)
-        {
-            // TODO: Trigger a mini game where the player has to patch holes in the boat
-            Debug.Log("Boat broke");
-            boatHitPoints = 0;
+            boatHitPoints -= damage;
+            timer = Time.time + damageCooldown;
+            Debug.Log("Boat took damage, HP: " + boatHitPoints);
+            if (isAughFrames == false)
+            {
+                StartCoroutine(AughFrames());
+            }
             healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
             PlayerPrefs.SetInt("BoatHP", boatHitPoints);
+
+            if (boatHitPoints <= 0)
+            {
+                // TODO: Trigger a mini game where the player has to patch holes in the boat
+                Debug.Log("Boat broke");
+                boatHitPoints = 0;
+                healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
+                PlayerPrefs.SetInt("BoatHP", boatHitPoints);
+            }
         }
     }
 
 
     IEnumerator AughFrames()
     {
+
         isAughFrames = true;
         for (int i = 0; i < 5; i++)
         {

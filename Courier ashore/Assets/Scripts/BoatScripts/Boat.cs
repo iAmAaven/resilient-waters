@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    [Header("Watergun")]
-    public GameObject bulletPrefab;
-    public Transform shootPoint;
-    public float fireRate;
+    [Header("Waterguns")]
+    public Transform waterGunSpawnpoint;
+    public GameObject levelOneWaterGun, levelTwoWaterGun, levelThreeWaterGun;
+
+    [Header("Boats")]
+    public GameObject levelOneBoatGFX;
+    public GameObject levelTwoBoatGFX;
+    public GameObject levelThreeBoatGFX;
 
     [Header("Package Stuff")]
     public int boatCapacity;
@@ -15,16 +19,25 @@ public class Boat : MonoBehaviour
     public List<PackageItem> packageItems = new List<PackageItem>();
     public bool isBeingChased;
 
-
-    private float timer = 0f;
-
-    void Update()
+    void Start()
     {
-        if (Time.time >= timer && Input.GetButton("Fire1"))
+        int boatLevel = PlayerPrefs.GetInt("BoatLevel", 1);
+        switch (boatLevel)
         {
-            ShootWatergun();
-            timer = Time.time + fireRate;
+            case 1:
+                boatCapacity = 3;
+                levelOneBoatGFX.SetActive(true);
+                break;
+            case 2:
+                boatCapacity = 4;
+                levelTwoBoatGFX.SetActive(true);
+                break;
+            case 3:
+                boatCapacity = 5;
+                levelThreeBoatGFX.SetActive(true);
+                break;
         }
+        SpawnWaterGun();
     }
 
     public void AddNewPackage(PackageItem packageItem)
@@ -42,10 +55,20 @@ public class Boat : MonoBehaviour
         packageItems.Remove(packageItem);
     }
 
-    void ShootWatergun()
+    void SpawnWaterGun()
     {
-        GameObject newBullet = Instantiate(bulletPrefab, shootPoint.position, transform.localRotation);
-        Vector2 direction = shootPoint.up;
-        newBullet.GetComponent<PlayerBullet>().shootDirection = direction;
+        int waterGunLevel = PlayerPrefs.GetInt("WaterGunLevel", 1);
+        if (waterGunLevel == 1)
+        {
+            Instantiate(levelOneWaterGun, waterGunSpawnpoint.position, Quaternion.identity, waterGunSpawnpoint);
+        }
+        else if (waterGunLevel == 2)
+        {
+            Instantiate(levelTwoWaterGun, waterGunSpawnpoint.position, Quaternion.identity, waterGunSpawnpoint);
+        }
+        else
+        {
+            Instantiate(levelThreeWaterGun, waterGunSpawnpoint.position, Quaternion.identity, waterGunSpawnpoint);
+        }
     }
 }
