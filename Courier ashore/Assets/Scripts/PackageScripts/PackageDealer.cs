@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PackageDealer : MonoBehaviour
 {
-    public GameObject packagePrefab;
+    public GameObject packagePrefab, shiftFinishedPrefab;
 
     private Boat boat;
+    private DayCycle dayCycle;
     void Start()
     {
+        dayCycle = FindObjectOfType<DayCycle>();
         boat = FindObjectOfType<Boat>();
         for (int i = 0; i < boat.boatCapacity; i++)
         {
@@ -18,6 +20,16 @@ public class PackageDealer : MonoBehaviour
 
     public void DealNewPackage()
     {
-        Instantiate(packagePrefab, transform);
+        if (dayCycle != null)
+        {
+            if (dayCycle.shiftFinished == false)
+            {
+                Instantiate(packagePrefab, transform);
+            }
+            else
+            {
+                Instantiate(shiftFinishedPrefab, transform);
+            }
+        }
     }
 }

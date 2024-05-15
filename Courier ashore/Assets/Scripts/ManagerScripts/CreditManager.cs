@@ -7,6 +7,15 @@ public class CreditManager : MonoBehaviour
 {
     public int credits;
     public TextMeshProUGUI creditText;
+    void Start()
+    {
+        int savedCredits = PlayerPrefs.GetInt("Credits");
+        if (savedCredits != 0)
+        {
+            credits = savedCredits;
+            AddCredits(0);
+        }
+    }
 
     public void AddCredits(int creditIncrease)
     {
@@ -16,5 +25,6 @@ public class CreditManager : MonoBehaviour
             credits = 0;
         }
         creditText.text = "" + credits;
+        PlayerPrefs.SetInt("Credits", credits);
     }
 }

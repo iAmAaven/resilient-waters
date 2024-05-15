@@ -12,7 +12,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Island
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: MapMarkers
+    uniqueID: 622349369
+    locked: 0
   - name: Background
     uniqueID: 865141037
     locked: 0

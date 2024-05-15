@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class ControlUI : MonoBehaviour
 {
-    public bool canPlayerMove = false;
-    public GameObject menus, miniMap;
+    public GameObject menus, miniMap, health;
+    private BoatMovement boatMovement;
+
+    void Start()
+    {
+        boatMovement = FindObjectOfType<BoatMovement>();
+    }
     void Update()
     {
         if (Input.GetButtonDown("OpenMenu"))
         {
+            ToggleMenus();
+        }
+    }
+
+    public void ToggleMenus()
+    {
+        if (boatMovement != null && boatMovement.isPlayerHarvesting == false)
+        {
             menus.SetActive(!menus.activeSelf);
             miniMap.SetActive(!menus.activeSelf);
+            health.SetActive(!menus.activeSelf);
 
             if (menus.activeSelf)
             {
-                canPlayerMove = true;
+                boatMovement.canPlayerMove = false;
             }
             else
             {
-                canPlayerMove = false;
+                boatMovement.canPlayerMove = true;
             }
         }
     }

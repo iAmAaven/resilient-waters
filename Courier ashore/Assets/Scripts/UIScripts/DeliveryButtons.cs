@@ -48,11 +48,11 @@ public class DeliveryButtons : MonoBehaviour
         _activePackage = deliveryUI.activePackage;
         CreditManager creditManager = FindObjectOfType<CreditManager>();
 
-        if (creditManager.credits >= 5 && deniesLeft > 0)
+        if (creditManager.credits >= 3 && deniesLeft > 0)
         {
             deniesLeft--;
             denySlider.value = deniesLeft;
-            creditManager.AddCredits(-5);
+            creditManager.AddCredits(-3);
             FindObjectOfType<PackageDealer>().DealNewPackage();
             Destroy(_activePackage.gameObject);
             deliveryUI.ClearPackageInfo();

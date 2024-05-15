@@ -15,7 +15,8 @@ public class BoatMovement : MonoBehaviour
 
 
     // HIDDEN
-    private ControlUI controlUI;
+    [HideInInspector] public bool canPlayerMove = true;
+    [HideInInspector] public bool isPlayerHarvesting = false;
 
     // PRIVATES
     private Rigidbody2D rb;
@@ -23,7 +24,6 @@ public class BoatMovement : MonoBehaviour
 
     void Start()
     {
-        controlUI = FindObjectOfType<ControlUI>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -34,7 +34,7 @@ public class BoatMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (controlUI.canPlayerMove == false)
+        if (canPlayerMove == true)
         {
             if (movementInput != Vector2.zero)
             {

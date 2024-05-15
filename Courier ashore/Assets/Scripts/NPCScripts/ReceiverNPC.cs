@@ -7,6 +7,12 @@ public class ReceiverNPC : MonoBehaviour
     public PackageItem packageForThisNPC;
     private bool canGivePackage = false;
     private bool packageGiven = false;
+    private BoatMovement boatMovement;
+
+    void Start()
+    {
+        boatMovement = FindObjectOfType<BoatMovement>();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         GameObject otherObj = other.gameObject;
@@ -28,7 +34,7 @@ public class ReceiverNPC : MonoBehaviour
 
     void Update()
     {
-        if (canGivePackage && packageGiven == false && Input.GetButtonDown("Interact"))
+        if (canGivePackage && packageGiven == false && Input.GetButtonDown("Interact") && boatMovement.canPlayerMove == true)
         {
             GivePackage();
         }
