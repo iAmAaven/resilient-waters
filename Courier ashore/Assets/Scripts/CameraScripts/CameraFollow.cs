@@ -1,47 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+
+    [Header("Smoothness")]
+    [SerializeField] float smoothSpeed = 0.125f;
+
+    [Header("Offset")]
+    [SerializeField] Vector3 offset;
+
     [Header("Camera Limits")]
     [SerializeField] Vector3 minValue;
     [SerializeField] Vector3 maxValue;
-    [SerializeField] Vector3 offset;
 
-    [Header("Smoothness")]
-    [Range(1, 10)]
-    [SerializeField] float smoothFactor;
-
-    // PRIVATES
+    private Vector3 velocity = Vector3.zero;
     private Transform target;
+
     void Start()
     {
-        FindTarget();
+        target = GameObject.FindWithTag("Player").transform;
     }
-    private void FixedUpdate()
+
+    void FixedUpdate()
     {
-        if (target)
+        if (target != null)
         {
-            Follow();
+            Vector3 targetPosition = target.position + offset;
+            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothSpeed);
+            Vector3 clampedPosition = new Vector3(
+                Mathf.Clamp(smoothedPosition.x, minValue.x, maxValue.x),
+                Mathf.Clamp(smoothedPosition.y, minValue.y, maxValue.y),
+                Mathf.Clamp(smoothedPosition.z, minValue.z, maxValue.z)
+            );
+            transform.position = clampedPosition;
         }
     }
 
-    void Follow()
+    public void SetTarget(Transform newTarget)
     {
-        Vector3 targetPosition = target.position + offset;
-
-        Vector3 boundPosition = new Vector3(
-            Mathf.Clamp(targetPosition.x, minValue.x, maxValue.x),
-            Mathf.Clamp(targetPosition.y, minValue.y, maxValue.y),
-            Mathf.Clamp(targetPosition.z, minValue.z, maxValue.z));
-
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
-        transform.position = smoothPosition;
+        target = newTarget;
     }
 
-    public void FindTarget()
+    void OnDrawGizmosSelected()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube((maxValue + minValue) / 2, maxValue - minValue);
     }
 }

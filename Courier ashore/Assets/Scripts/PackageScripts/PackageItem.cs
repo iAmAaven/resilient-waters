@@ -16,8 +16,10 @@ public class PackageItem : MonoBehaviour
 
     private Transform playerPos;
     private GameObject packageTracker;
+    private BoatMovement boatMovement;
     void Start()
     {
+        boatMovement = FindObjectOfType<BoatMovement>();
         playerPos = GameObject.FindWithTag("Player").transform;
         packageTracker = Instantiate(packageTrackerPrefab, playerPos.position, Quaternion.identity);
         packageTracker.GetComponent<PackageTracker>().target = transform;
@@ -46,7 +48,7 @@ public class PackageItem : MonoBehaviour
 
     void Update()
     {
-        if (canPickup && pickedUp == false && Input.GetButtonDown("Interact"))
+        if (canPickup && pickedUp == false && Input.GetButtonDown("Interact") && boatMovement.canPlayerMove == true)
         {
             PickedUp();
         }

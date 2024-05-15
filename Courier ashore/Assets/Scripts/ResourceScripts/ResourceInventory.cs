@@ -43,6 +43,13 @@ public class ResourceInventory : MonoBehaviour
 
     void Start()
     {
+        woodAmount = LoadResources("Wood");
+        stoneAmount = LoadResources("Stone");
+        coalAmount = LoadResources("Coal");
+        ironAmount = LoadResources("Iron");
+        goldAmount = LoadResources("Gold");
+        gemAmount = LoadResources("Gem");
+
         RefreshResources();
     }
     public void RefreshResources()
@@ -53,6 +60,13 @@ public class ResourceInventory : MonoBehaviour
         ironText.text = "" + ironAmount;
         goldText.text = "" + goldAmount;
         gemText.text = "" + gemAmount;
+
+        SaveResources("Wood", woodAmount);
+        SaveResources("Stone", stoneAmount);
+        SaveResources("Coal", coalAmount);
+        SaveResources("Iron", ironAmount);
+        SaveResources("Gold", goldAmount);
+        SaveResources("Gem", gemAmount);
     }
 
     public void DealResources(bool isIsland)
@@ -79,13 +93,27 @@ public class ResourceInventory : MonoBehaviour
     int RandomChanceAtResource(int amountOfResource, float chance, int minAmount, int maxAmount, string type)
     {
         int resourceAmountBefore = amountOfResource;
+        int addedAmountOfResource;
+
         float randomChanceAtResource = Random.Range(0f, 1f);
+
         if (randomChanceAtResource < chance)
         {
             amountOfResource += Random.Range(minAmount, maxAmount);
-            Debug.Log(amountOfResource - resourceAmountBefore + " " + type + " given!");
+            addedAmountOfResource = amountOfResource - resourceAmountBefore;
+
+            Debug.Log(addedAmountOfResource + " " + type + " given!");
         }
 
         return amountOfResource;
+    }
+
+    void SaveResources(string prefName, int resourceAmount)
+    {
+        PlayerPrefs.SetInt(prefName, resourceAmount);
+    }
+    int LoadResources(string prefName)
+    {
+        return PlayerPrefs.GetInt(prefName);
     }
 }

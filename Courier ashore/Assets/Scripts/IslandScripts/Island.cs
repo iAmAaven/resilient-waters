@@ -26,8 +26,11 @@ public class Island : MonoBehaviour
     decreasing = false;                 // Keeps track whether the coroutine "DecreaseHarvest()" is running
                                         // when false, the coroutine can be started by pressing "Interact"
 
+    private BoatMovement boatMovement;
+
     void Start()
     {
+        boatMovement = FindObjectOfType<BoatMovement>();
         harvestCanvas.worldCamera = Camera.main;
         harvestProgressBar.gameObject.SetActive(false);
         whiteOutline.SetActive(false);
@@ -56,6 +59,8 @@ public class Island : MonoBehaviour
             if (whiteOutline != null)
                 whiteOutline.SetActive(false);
 
+            boatMovement.canPlayerMove = true;
+            boatMovement.isPlayerHarvesting = false;
             harvesting = false;
             harvestProgressBar.value = 0;
             harvestProgressBar.gameObject.SetActive(false);
@@ -66,11 +71,12 @@ public class Island : MonoBehaviour
 
     void Update()
     {
-        if (ableToHarvest && harvested == false)
+        if (boatMovement != null && ableToHarvest && harvested == false)
         {
-            if (Input.GetButtonDown("Interact") && harvesting == false)
+            if (Input.GetButtonDown("Interact") && harvesting == false && boatMovement.canPlayerMove == true)
             {
                 harvesting = true;
+                boatMovement.canPlayerMove = false;
                 StopCoroutine(DecreaseHarvest());
                 if (increasing == false)
                 {
@@ -80,6 +86,7 @@ public class Island : MonoBehaviour
             if (Input.GetButtonUp("Interact") && harvesting == true)
             {
                 harvesting = false;
+                boatMovement.canPlayerMove = true;
                 StopCoroutine(IncreaseHarvest());
                 if (decreasing == false)
                 {
@@ -97,6 +104,7 @@ public class Island : MonoBehaviour
             if (harvesting == false)
                 break;
 
+            boatMovement.isPlayerHarvesting = true;
             harvestProgressBar.value += 0.5f;
 
             if (harvestProgressBar.value >= harvestProgressBar.maxValue)
@@ -117,6 +125,7 @@ public class Island : MonoBehaviour
             if (harvesting == true)
                 break;
 
+            boatMovement.isPlayerHarvesting = false;
             harvestProgressBar.value -= 0.5f;
 
             if (harvestProgressBar.value <= harvestProgressBar.minValue)
@@ -131,6 +140,8 @@ public class Island : MonoBehaviour
 
     void IslandHarvested()
     {
+        boatMovement.canPlayerMove = true;
+        boatMovement.isPlayerHarvesting = false;
         harvestProgressBar.gameObject.SetActive(false);
         Destroy(whiteOutline);
         harvested = true;

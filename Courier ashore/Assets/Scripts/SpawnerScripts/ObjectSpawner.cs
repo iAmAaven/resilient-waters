@@ -9,8 +9,10 @@ public class ObjectSpawner : MonoBehaviour
     public List<Transform> objectSpawnpoints = new List<Transform>();
     public bool isIslandSpawner = false;
     private IslandPackageManager islandPackageManager;
+    private NavMeshInformation navMeshInformation;
     void Start()
     {
+        navMeshInformation = FindObjectOfType<NavMeshInformation>();
         islandPackageManager = FindObjectOfType<IslandPackageManager>();
         SpawnObjects();
     }
@@ -29,5 +31,7 @@ public class ObjectSpawner : MonoBehaviour
 
             objectSpawnpoints.Remove(randomSpawnpoint);
         }
+
+        navMeshInformation.RefreshNav();
     }
 }
