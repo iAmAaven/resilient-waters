@@ -29,6 +29,7 @@ public class DayCycle : MonoBehaviour
 
     void Start()
     {
+        timer = timeSpeed;
         boatMovement = FindObjectOfType<BoatMovement>();
         currentShift = PlayerPrefs.GetString("CurrentShift", "Day");
         PlayerPrefs.SetString("CurrentShift", currentShift);

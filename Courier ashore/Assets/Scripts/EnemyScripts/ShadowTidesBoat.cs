@@ -5,19 +5,26 @@ using UnityEngine.AI;
 
 public class ShadowTidesBoat : MonoBehaviour
 {
+    [Header("Movement & AI")]
     public float rotationSpeed;
-    public float fireRate;
     public float playerDetectRadius;
+    public NavMeshAgent navMeshAgent;
+
+    [Header("Shooting")]
+    public float fireRate;
     public GameObject bulletPrefab;
     public Transform shootPoint;
-    public NavMeshAgent navMeshAgent;
     public LayerMask whatIsPlayer;
 
+    [Header("References")]
+    public GameObject graphics;
+    public GameObject movingEngine, stationaryEngine;
+
+    [HideInInspector] public float startingRadius;
     private Transform playerPos;
     private float timer = 0f;
     private WorldBorders worldBorders;
     private bool playerDetected = false;
-    [HideInInspector] public float startingRadius;
     private float randomSpotTimer;
     private Vector2 randomSpot;
     private Boat playerBoat;
@@ -42,18 +49,30 @@ public class ShadowTidesBoat : MonoBehaviour
 
         if (playerPos != null)
         {
-            if (playerDetected)
-                FollowPlayer();
-            else
+            if (playerBoat.isCarryingContraband && playerDetected)
             {
-                GoToRandomPoint();
+                FollowPlayer();
+                if (Time.time >= timer)
+                {
+                    ShootWater();
+                    timer = Time.time + fireRate;
+                }
             }
         }
-
-        if (playerDetected && Time.time >= timer)
+        if (playerDetected == false || playerBoat.isCarryingContraband == false)
         {
-            ShootWater();
-            timer = Time.time + fireRate;
+            GoToRandomPoint();
+        }
+
+        if (navMeshAgent.velocity.magnitude > 0.5f)
+        {
+            movingEngine.SetActive(true);
+            stationaryEngine.SetActive(false);
+        }
+        else
+        {
+            movingEngine.SetActive(false);
+            stationaryEngine.SetActive(true);
         }
     }
 
@@ -66,6 +85,7 @@ public class ShadowTidesBoat : MonoBehaviour
     }
     void FollowPlayer()
     {
+        navMeshAgent.speed = 5.5f;
         playerDetectRadius = startingRadius * 2;
         if (playerBoat.isBeingChased == false || isChasing == true)
         {
@@ -87,11 +107,12 @@ public class ShadowTidesBoat : MonoBehaviour
         Vector3 direction = playerPos.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        graphics.transform.rotation = Quaternion.RotateTowards(graphics.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     void GoToRandomPoint()
     {
+        navMeshAgent.speed = 3f;
         playerDetectRadius = startingRadius;
         isChasing = false;
         if (Time.time >= randomSpotTimer || wasShootingAtPlayer == true || wasChasing == true)
@@ -107,19 +128,21 @@ public class ShadowTidesBoat : MonoBehaviour
             randomSpotTimer = Time.time + 45f;
         }
 
-        AngleBoat();
+        RotateBoat();
 
-        if (Vector2.Distance(transform.position, randomSpot) < 5f)
+        if (Vector2.Distance(transform.position, randomSpot) < 10f)
         {
             randomSpotTimer = 0;
         }
     }
 
-    void AngleBoat()
+    void RotateBoat()
     {
         float angle = Mathf.Atan2(navMeshAgent.velocity.y, navMeshAgent.velocity.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        graphics.transform.rotation = Quaternion.RotateTowards(graphics.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)

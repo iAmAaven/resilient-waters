@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 3f);
     }
 
     void Update()
@@ -24,10 +24,10 @@ public class PlayerBullet : MonoBehaviour
         GameObject otherObj = other.gameObject;
         if (otherObj.tag == "Enemy")
         {
-            otherObj.GetComponent<EnemyHP>().TakeDamage();
+            otherObj.GetComponentInParent<EnemyHP>().TakeDamage();
             Destroy(gameObject);
         }
-        else if (otherObj.tag == "Object" || otherObj.tag == "Island")
+        else if (otherObj.tag == "Object")
         {
             Destroy(gameObject);
         }

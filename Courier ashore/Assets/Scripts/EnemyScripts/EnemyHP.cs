@@ -11,6 +11,7 @@ public class EnemyHP : MonoBehaviour
     void Start()
     {
         shadowTidesBoat = GetComponent<ShadowTidesBoat>();
+        enemyHealth *= PlayerPrefs.GetInt("WaterGunLevel", 1);
     }
     public void TakeDamage()
     {
@@ -35,7 +36,6 @@ public class EnemyHP : MonoBehaviour
         {
             graphics.color = new Color32(255, 255, 255, 255);
             yield return new WaitForSeconds(0.1f);
-            // Player becomes invisible (and invinsible XD) for a second
             graphics.color = new Color32(255, 255, 255, 0);
             yield return new WaitForSeconds(0.1f);
         }

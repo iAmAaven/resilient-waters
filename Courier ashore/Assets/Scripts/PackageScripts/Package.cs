@@ -43,12 +43,10 @@ public class Package : MonoBehaviour
     // PRIVATES
     private DeliveryUI deliveryUI;
     private DeliveryButtons deliveryButtons;
-    private IslandPackageManager islandPackageManager;
 
     void Start()
     {
         deliveryButtons = FindObjectOfType<DeliveryButtons>();
-        islandPackageManager = FindObjectOfType<IslandPackageManager>();
         deliveryUI = FindObjectOfType<DeliveryUI>();
         RandomPackage();
     }
@@ -64,7 +62,7 @@ public class Package : MonoBehaviour
     void RandomDeliveryTime()
     {
         float randomChance = Random.Range(0f, 1f);
-        if (randomChance < 0.1f)
+        if (randomChance < 0.15f)
         {
             deliveryTime = 2;
             fastDelivery.SetActive(true);
@@ -137,7 +135,6 @@ public class Package : MonoBehaviour
             finalGFX = packageGFX[randomSpriteIndex];
         }
     }
-
     public void PackagePickedUp()
     {
         packagePickedUp = true;
@@ -161,6 +158,8 @@ public class Package : MonoBehaviour
             deliveryButtons.accepted.SetActive(false);
         }
     }
+
+
     // BUTTON SCRIPTS
 
     public void ActivatePackage()
@@ -169,6 +168,8 @@ public class Package : MonoBehaviour
         {
             newMarker.SetActive(false);
             deliveryUI.activePackage = this;
+            deliveryButtons.ToggleDemandMorePay(contraband);
+            deliveryButtons.ToggleDeniedCost(contraband);
 
             if (packageAccepted == false)
             {

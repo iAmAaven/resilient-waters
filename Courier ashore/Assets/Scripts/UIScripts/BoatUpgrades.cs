@@ -16,6 +16,12 @@ public class BoatUpgrades : MonoBehaviour
     public TextMeshProUGUI boatLevelText;
     public int maxLevel = 2;
 
+    [Header("Repair boat")]
+    public int repairRequiredCredits = 5;
+    public int repairRequiredWood;
+    public TextMeshProUGUI repairRequiredWoodText;
+    public TextWriter repairDialogueText;
+
     [Header("Boat speed")]
     public int speedRequiredCredits;
     public int speedRequiredWood, speedRequiredCoal, speedRequiredGold;
@@ -47,8 +53,42 @@ public class BoatUpgrades : MonoBehaviour
     void Start()
     {
         LoadAllRequirements();
+        CheckOutBoat();
     }
 
+    public void RepairBoat()
+    {
+        int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
+
+        if (boatHP < PlayerPrefs.GetInt("BoatDurabilityLevel") * 10
+            && resourceInventory.woodAmount >= repairRequiredWood
+            && creditManager.credits >= repairRequiredCredits)
+        {
+            resourceInventory.woodAmount -= repairRequiredWood;
+            creditManager.credits -= repairRequiredCredits;
+
+            PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel") * 10);
+            repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+        }
+        else
+        {
+            repairDialogueText.dialogueText = "Your boat seems fine to me";
+            Debug.Log("Not enough resources or boat is at max HP");
+        }
+    }
+    public void CheckOutBoat()
+    {
+        int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
+
+        if (boatHP == PlayerPrefs.GetInt("BoatDurabilityLevel") * 10)
+        {
+            repairDialogueText.dialogueText = "Your boat seems fine to me...";
+        }
+        else
+        {
+            repairDialogueText.dialogueText = "Woah!\n\nYour boat has taken some damage...\n\nLet me fix it for you";
+        }
+    }
     public void UpgradeBoatSpeed()
     {
         if (resourceInventory.woodAmount >= speedRequiredWood
@@ -217,6 +257,8 @@ public class BoatUpgrades : MonoBehaviour
 
     public void RefreshRequirementTexts()
     {
+        repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+
         speedRequiredWoodText.text = speedRequiredWood + "";
         speedRequiredCoalText.text = speedRequiredCoal + "";
         speedRequiredGoldText.text = speedRequiredGold + "";

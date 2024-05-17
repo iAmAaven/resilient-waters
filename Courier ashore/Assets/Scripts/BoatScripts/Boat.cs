@@ -18,6 +18,7 @@ public class Boat : MonoBehaviour
     public GameObject receiverTrackerPrefab;
     public List<PackageItem> packageItems = new List<PackageItem>();
     public bool isBeingChased;
+    public bool isCarryingContraband = false;
 
     void Start()
     {
@@ -45,6 +46,11 @@ public class Boat : MonoBehaviour
         if (packageItems.Count < boatCapacity)
         {
             packageItems.Add(packageItem);
+            if (packageItem.packageInfo.isContraband == true)
+            {
+                isCarryingContraband = true;
+                FindObjectOfType<ContrabandManager>().CarryingContraband(isCarryingContraband);
+            }
             GameObject newTracker = Instantiate(receiverTrackerPrefab, transform.position, Quaternion.identity);
             packageItem.tracker = newTracker;
             newTracker.GetComponent<PackageTracker>().target = packageItem.receiverNPC.transform;
@@ -53,6 +59,25 @@ public class Boat : MonoBehaviour
     public void RemovePackage(PackageItem packageItem)
     {
         packageItems.Remove(packageItem);
+
+        if (packageItems.Count > 0)
+        {
+            foreach (PackageItem package in packageItems)
+            {
+                if (package.packageInfo.isContraband == true)
+                {
+                    isCarryingContraband = true;
+                    break;
+                }
+                isCarryingContraband = false;
+            }
+        }
+        else
+        {
+            isCarryingContraband = false;
+        }
+
+        FindObjectOfType<ContrabandManager>().CarryingContraband(isCarryingContraband);
     }
 
     void SpawnWaterGun()

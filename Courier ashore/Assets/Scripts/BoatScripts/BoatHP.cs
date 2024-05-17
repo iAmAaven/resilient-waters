@@ -18,6 +18,7 @@ public class BoatHP : MonoBehaviour
 
     void Start()
     {
+        healthUI = FindObjectOfType<HealthUI>();
         graphics = GetComponentInChildren<SpriteRenderer>();
         dangerousBoatSpeed = PlayerPrefs.GetFloat("BoatSpeed") - 2f;
         if (dangerousBoatSpeed < 4f)
@@ -26,14 +27,9 @@ public class BoatHP : MonoBehaviour
         }
         boatMovement = GetComponent<BoatMovement>();
         boatHitPoints = PlayerPrefs.GetInt("BoatHP");
-        boatMaxHitPoints = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10;
-        if (boatHitPoints <= 0)
-        {
-            boatHitPoints = boatMaxHitPoints;
-        }
+        boatMaxHitPoints = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10;
 
-        healthUI = FindObjectOfType<HealthUI>();
-        healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
+        healthUI.RefreshHealth();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -59,16 +55,16 @@ public class BoatHP : MonoBehaviour
             {
                 StartCoroutine(AughFrames());
             }
-            healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
             PlayerPrefs.SetInt("BoatHP", boatHitPoints);
+            healthUI.RefreshHealth();
 
             if (boatHitPoints <= 0)
             {
-                // TODO: Trigger a mini game where the player has to patch holes in the boat
                 Debug.Log("Boat broke");
                 boatHitPoints = 0;
-                healthUI.RefreshHealth(boatHitPoints, boatMaxHitPoints);
                 PlayerPrefs.SetInt("BoatHP", boatHitPoints);
+                healthUI.RefreshHealth();
+                FindObjectOfType<PassOut>().BoatDestroyed();
             }
         }
     }

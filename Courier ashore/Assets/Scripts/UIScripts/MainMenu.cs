@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] string sceneToLoad;
-
-    public void StartGame()
+    public Animator cameraAnim;
+    public void Play()
     {
-        SceneManager.LoadScene(sceneToLoad);
+        cameraAnim.SetTrigger("Play");
+    }
+    public void GoToMenu()
+    {
+        cameraAnim.SetTrigger("Menu");
     }
     public void QuitGame()
     {

@@ -7,9 +7,9 @@ public class HealthUI : MonoBehaviour
 {
     public Slider healthSlider;
 
-    public void RefreshHealth(int health, int maxHealth)
+    public void RefreshHealth()
     {
-        healthSlider.value = health;
-        healthSlider.maxValue = maxHealth;
+        healthSlider.maxValue = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10;
+        healthSlider.value = PlayerPrefs.GetInt("BoatHP", 10);
     }
 }

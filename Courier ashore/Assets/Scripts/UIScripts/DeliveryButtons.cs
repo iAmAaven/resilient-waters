@@ -9,6 +9,7 @@ public class DeliveryButtons : MonoBehaviour
     public Button[] deliveryInfoButtons;
     public GameObject accepted, pickedUp, delivered;
     public Slider denySlider;
+    public GameObject demandMorePay, deniedCost, deniedWithoutCost;
 
     private int deniesLeft;
     private DeliveryUI deliveryUI;
@@ -35,6 +36,8 @@ public class DeliveryButtons : MonoBehaviour
             _activePackage.contraband = "yes";
             deliveryUI.contrabandText.text = _activePackage.contraband;
             deliveryUI.packageGFX.sprite = _activePackage.scannedContrabandGFX[_activePackage.randomSpriteIndex];
+            ToggleDemandMorePay(_activePackage.contraband);
+            ToggleDeniedCost(_activePackage.contraband);
         }
         else
         {
@@ -48,7 +51,7 @@ public class DeliveryButtons : MonoBehaviour
         _activePackage = deliveryUI.activePackage;
         CreditManager creditManager = FindObjectOfType<CreditManager>();
 
-        if (creditManager.credits >= 3 && deniesLeft > 0)
+        if (_activePackage.contraband != "yes" && creditManager.credits >= 3 && deniesLeft > 0)
         {
             deniesLeft--;
             denySlider.value = deniesLeft;
@@ -56,6 +59,16 @@ public class DeliveryButtons : MonoBehaviour
             FindObjectOfType<PackageDealer>().DealNewPackage();
             Destroy(_activePackage.gameObject);
             deliveryUI.ClearPackageInfo();
+        }
+        else if (_activePackage.contraband == "yes")
+        {
+            FindObjectOfType<PackageDealer>().DealNewPackage();
+            Destroy(_activePackage.gameObject);
+            deliveryUI.ClearPackageInfo();
+        }
+        if (deniesLeft <= 0)
+        {
+            deniedCost.GetComponent<Button>().enabled = false;
         }
     }
     public void AcceptPackage()
@@ -84,6 +97,30 @@ public class DeliveryButtons : MonoBehaviour
         deliveryUI.ClearPackageInfo();
         FindObjectOfType<PackageDealer>().DealNewPackage();
         Destroy(_activePackage.gameObject);
+    }
+    public void ToggleDemandMorePay(string isItContraband)
+    {
+        if (isItContraband == "yes")
+        {
+            demandMorePay.SetActive(true);
+        }
+        else
+        {
+            demandMorePay.SetActive(false);
+        }
+    }
+    public void ToggleDeniedCost(string isItContraband)
+    {
+        if (isItContraband == "yes")
+        {
+            deniedWithoutCost.SetActive(true);
+            deniedCost.SetActive(false);
+        }
+        else
+        {
+            deniedWithoutCost.SetActive(false);
+            deniedCost.SetActive(true);
+        }
     }
 
     void DisableButtons()

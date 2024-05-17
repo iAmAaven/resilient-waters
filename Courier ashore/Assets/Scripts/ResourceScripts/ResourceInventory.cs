@@ -76,7 +76,7 @@ public class ResourceInventory : MonoBehaviour
         coalAmount = RandomChanceAtResource(coalAmount, coalChance, 1, (maxCoal + 1) / 2, "coal");
         goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
 
-        gemAmount = RandomChanceAtResource(gemAmount, 0.1f, minGem, maxGem + 1, "gem");
+        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem");
         RefreshResources();
     }
     public void DealBigRockResources(float coalChance, float ironChance, float goldChance)
@@ -86,7 +86,7 @@ public class ResourceInventory : MonoBehaviour
         ironAmount = RandomChanceAtResource(ironAmount, ironChance, minIron, maxIron + 1, "iron");
         goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
 
-        gemAmount = RandomChanceAtResource(gemAmount, 0.1f, minGem, maxGem + 1, "gem");
+        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem");
         RefreshResources();
     }
 

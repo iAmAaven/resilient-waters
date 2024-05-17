@@ -2314,7 +2314,7 @@ GameObject:
   - component: {fileID: 6468594068056407218}
   m_Layer: 6
   m_Name: Astoria
-  m_TagString: Island
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
