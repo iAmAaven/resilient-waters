@@ -1,0 +1,603 @@
+fileFormatVersion: 2
+guid: cb414d0611a295c48bdd239937323840
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: ResilientWatersTitle_Shine_Frame_0
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 239
+      height: 107
+    spriteID: bc095bc4e5126d643a40b95f138815a8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: -7}
+  - name: ResilientWatersTitle_Shine_Frame_1
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 119
+      width: 239
+      height: 107
+    spriteID: 1f2f532baa40f72478365cabb6d50865
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 108}
+  - name: ResilientWatersTitle_Shine_Frame_2
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 234
+      width: 239
+      height: 107
+    spriteID: c8d55424bfc98e44d85951856d4fd016
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 223}
+  - name: ResilientWatersTitle_Shine_Frame_3
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 349
+      width: 239
+      height: 107
+    spriteID: a1b1bf3ca4fb50f4d9837e44f5f6a336
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 338}
+  - name: ResilientWatersTitle_Shine_Frame_4
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 464
+      width: 239
+      height: 107
+    spriteID: 0447b029a9629ec4d8fa8d789bcb1f46
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 453}
+  - name: ResilientWatersTitle_Shine_Frame_5
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 579
+      width: 239
+      height: 107
+    spriteID: c0cdd5bd0ced03f419012c85ad86e736
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 568}
+  - name: ResilientWatersTitle_Shine_Frame_6
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 694
+      width: 239
+      height: 107
+    spriteID: 94e8bca708795cf48a4de6b1f52d3a06
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 683}
+  - name: ResilientWatersTitle_Shine_Frame_7
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 809
+      width: 239
+      height: 107
+    spriteID: 75ee33edf68c094498d4adb9dd1425f8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -5, y: 798}
+  - name: ResilientWatersTitle_Shine_Frame_8
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 4
+      width: 239
+      height: 107
+    spriteID: 000c963a93b83e142a55902fc1755efa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: -7}
+  - name: ResilientWatersTitle_Shine_Frame_9
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 119
+      width: 239
+      height: 107
+    spriteID: 8ea4f0bfdba438f4795f3d03e12cf587
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 108}
+  - name: ResilientWatersTitle_Shine_Frame_10
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 234
+      width: 239
+      height: 107
+    spriteID: aafcca6efd046d843a22d9a06acf3fb7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 223}
+  - name: ResilientWatersTitle_Shine_Frame_11
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 349
+      width: 239
+      height: 107
+    spriteID: b65f72c15f54983429f8c1c463b16dfd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 338}
+  - name: ResilientWatersTitle_Shine_Frame_12
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 464
+      width: 239
+      height: 107
+    spriteID: 469e05ab60befca43bb6e0f50735db15
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 453}
+  - name: ResilientWatersTitle_Shine_Frame_13
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 579
+      width: 239
+      height: 107
+    spriteID: be67445496c03094cb17dbd8b0dcf437
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 568}
+  - name: ResilientWatersTitle_Shine_Frame_14
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 694
+      width: 239
+      height: 107
+    spriteID: 5d04a0f9f1630db4aa202367cc51239a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 683}
+  - name: ResilientWatersTitle_Shine_Frame_15
+    originalName: 
+    pivot: {x: 0.49790794, y: -0.10280374}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 809
+      width: 239
+      height: 107
+    spriteID: 3be7fc81e80e7714e812c9cf81ce8ab6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 242, y: 798}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 80251023
+    name: ResilientWatersTitle_Shine
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: ResilientWatersTitle_Shine_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: bc095bc4e5126d643a40b95f138815a8
+    - name: ResilientWatersTitle_Shine_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 1f2f532baa40f72478365cabb6d50865
+    - name: ResilientWatersTitle_Shine_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: c8d55424bfc98e44d85951856d4fd016
+    - name: ResilientWatersTitle_Shine_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: a1b1bf3ca4fb50f4d9837e44f5f6a336
+    - name: ResilientWatersTitle_Shine_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 0447b029a9629ec4d8fa8d789bcb1f46
+    - name: ResilientWatersTitle_Shine_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: c0cdd5bd0ced03f419012c85ad86e736
+    - name: ResilientWatersTitle_Shine_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 94e8bca708795cf48a4de6b1f52d3a06
+    - name: ResilientWatersTitle_Shine_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 75ee33edf68c094498d4adb9dd1425f8
+    - name: ResilientWatersTitle_Shine_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 000c963a93b83e142a55902fc1755efa
+    - name: ResilientWatersTitle_Shine_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 8ea4f0bfdba438f4795f3d03e12cf587
+    - name: ResilientWatersTitle_Shine_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: aafcca6efd046d843a22d9a06acf3fb7
+    - name: ResilientWatersTitle_Shine_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: b65f72c15f54983429f8c1c463b16dfd
+    - name: ResilientWatersTitle_Shine_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 469e05ab60befca43bb6e0f50735db15
+    - name: ResilientWatersTitle_Shine_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: be67445496c03094cb17dbd8b0dcf437
+    - name: ResilientWatersTitle_Shine_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 5d04a0f9f1630db4aa202367cc51239a
+    - name: ResilientWatersTitle_Shine_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      spriteId: 3be7fc81e80e7714e812c9cf81ce8ab6
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 256, y: 128}

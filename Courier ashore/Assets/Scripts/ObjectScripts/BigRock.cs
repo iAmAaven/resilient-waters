@@ -31,6 +31,20 @@ public class BigRock : MonoBehaviour
         harvestCanvas.worldCamera = Camera.main;
         harvestProgressBar.gameObject.SetActive(false);
         whiteOutline.SetActive(false);
+
+        int harvestLevel = PlayerPrefs.GetInt("HarvestLevel", 1);
+        switch (harvestLevel)
+        {
+            case 1:
+                harvestRate = 0.05f;
+                break;
+            case 2:
+                harvestRate = 0.03f;
+                break;
+            default:
+                harvestRate = 0.015f;
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

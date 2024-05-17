@@ -46,7 +46,6 @@ GameObject:
   m_Component:
   - component: {fileID: 700479182762054030}
   - component: {fileID: 2694395060009921471}
-  - component: {fileID: 398243185307068863}
   m_Layer: 7
   m_Name: Collider
   m_TagString: Object
@@ -104,22 +103,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000018088959, y: 0.48258847}
   m_Size: {x: 3.531604, y: 1.7651939}
   m_Direction: 1
---- !u!114 &398243185307068863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570629064796087546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &1907079082308212494
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +466,7 @@ GameObject:
   - component: {fileID: 5648646273203833486}
   - component: {fileID: 161167597206261653}
   - component: {fileID: 7554270173238584656}
+  - component: {fileID: 2853689232542097050}
   m_Layer: 7
   m_Name: BigRock
   m_TagString: Untagged
@@ -573,11 +557,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452867f5d4a087b4c8d2ebec3b89223b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harvestCanvas: {fileID: 4576671291053428179}
-  whiteOutline: {fileID: 4649072029908608227}
-  harvestProgressBar: {fileID: 563217825567516071}
   ableToHarvest: 0
   harvestRate: 0.03
+  coalChance: 0.75
+  ironChance: 0.5
+  goldChance: 0.25
+  harvestCanvas: {fileID: 4576671291053428179}
+  harvestProgressBar: {fileID: 563217825567516071}
+  whiteOutline: {fileID: 4649072029908608227}
 --- !u!70 &7554270173238584656
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -613,6 +600,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000018438422, y: 0.45327336}
   m_Size: {x: 7.3027787, y: 5.1178384}
   m_Direction: 1
+--- !u!114 &2853689232542097050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389546072677323411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &6964734815040723570
 GameObject:
   m_ObjectHideFlags: 0

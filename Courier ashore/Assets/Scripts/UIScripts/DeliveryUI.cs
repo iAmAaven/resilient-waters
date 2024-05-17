@@ -11,6 +11,7 @@ public class DeliveryUI : MonoBehaviour
         pickUpPointText, destinationText,
         paycheckText, contrabandText;
 
+    public GameObject[] statusObjects;
     public string[] places;
     public Image packageGFX;
     public Package activePackage;
@@ -35,5 +36,10 @@ public class DeliveryUI : MonoBehaviour
         contrabandText.text = "";
         packageGFX.sprite = null;
         packageGFX.color = new Color(0, 0, 0, 0);
+
+        foreach (GameObject statusObject in statusObjects)
+        {
+            statusObject.SetActive(false);
+        }
     }
 }

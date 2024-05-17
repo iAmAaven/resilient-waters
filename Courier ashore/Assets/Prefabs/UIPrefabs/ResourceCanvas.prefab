@@ -117,19 +117,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   woodAmount: 0
-  minWood: 8
+  minWood: 10
   maxWood: 20
   woodText: {fileID: 2166755821005249949}
   stoneAmount: 0
-  minStone: 6
-  maxStone: 15
+  minStone: 10
+  maxStone: 20
   stoneText: {fileID: 1930046833082225210}
   coalAmount: 0
-  minCoal: 4
+  minCoal: 8
   maxCoal: 12
   coalText: {fileID: 6933705925177284090}
   ironAmount: 0
-  minIron: 4
+  minIron: 6
   maxIron: 10
   ironText: {fileID: 3454819646178143737}
   goldAmount: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   goldText: {fileID: 5001100103784495201}
   gemAmount: 0
   minGem: 1
-  maxGem: 2
+  maxGem: 1
   gemText: {fileID: 6099402381157789800}
 --- !u!1 &1144930014269684708
 GameObject:

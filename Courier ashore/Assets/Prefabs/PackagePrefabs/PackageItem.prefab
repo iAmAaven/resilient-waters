@@ -219,6 +219,8 @@ MonoBehaviour:
   outline: {fileID: 2710389584255211456}
   packageTrackerPrefab: {fileID: 3633617876576980743, guid: 128d85b9f3126c34a82e00083383d4d9, type: 3}
   destinationIsland: {fileID: 0}
+  graphics: {fileID: 111840550102954540}
+  triggerCollider: {fileID: 4625133562507649047}
   receiverNPC: {fileID: 0}
   tracker: {fileID: 0}
 --- !u!58 &4625133562507649047

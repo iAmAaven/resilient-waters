@@ -5,24 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class PassOut : MonoBehaviour
 {
-    public GameObject passedOut;
+    public GameObject passedOut, boatDestroyed;
     public GameObject[] otherCanvases;
     private BoatMovement boatMovement;
+    private CreditManager creditManager;
+
+    void Start()
+    {
+        creditManager = FindObjectOfType<CreditManager>();
+        boatMovement = FindObjectOfType<BoatMovement>();
+    }
 
     public void PassedOut()
     {
-        boatMovement = FindObjectOfType<BoatMovement>();
-        boatMovement.playerPassedOut = true;
-        foreach (GameObject canvas in otherCanvases)
+        if (boatMovement.playerPassedOut == false)
         {
-            canvas.SetActive(false);
+            PlayerPrefs.SetInt("Credits", (int)(creditManager.credits * 0.75));
+
+            boatMovement.playerPassedOut = true;
+            foreach (GameObject canvas in otherCanvases)
+            {
+                canvas.SetActive(false);
+            }
+            passedOut.SetActive(true);
+            Invoke("GoToPassOutScene", 4f);
         }
-        passedOut.SetActive(true);
-        Invoke("GoToGomeIsland", 4f);
+    }
+    public void BoatDestroyed()
+    {
+        if (boatMovement.playerPassedOut == false)
+        {
+            PlayerPrefs.SetInt("Credits", (int)(creditManager.credits * 0.5));
+
+            boatMovement = FindObjectOfType<BoatMovement>();
+            boatMovement.canPlayerMove = false;
+            boatMovement.playerPassedOut = true;
+
+            foreach (GameObject canvas in otherCanvases)
+            {
+                canvas.SetActive(false);
+            }
+            passedOut.SetActive(false);
+            boatDestroyed.SetActive(true);
+            Invoke("GoToDeathRescueScene", 4f);
+        }
     }
 
-    void GoToGomeIsland()
+    void GoToPassOutScene()
     {
-        SceneManager.LoadScene("HomeIsland");
+        SceneManager.LoadScene("PassOutRescue");
+    }
+    void GoToDeathRescueScene()
+    {
+        SceneManager.LoadScene("DeathRescue");
     }
 }

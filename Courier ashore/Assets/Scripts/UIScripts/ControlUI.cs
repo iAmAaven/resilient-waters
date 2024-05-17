@@ -5,15 +5,18 @@ using UnityEngine;
 public class ControlUI : MonoBehaviour
 {
     public GameObject menus, miniMap, health, clock;
+    public PackageDealer packageDealer;
     private BoatMovement boatMovement;
+    private TutorialManager tutorialManager;
 
     void Start()
     {
+        tutorialManager = FindObjectOfType<TutorialManager>();
         boatMovement = FindObjectOfType<BoatMovement>();
     }
     void Update()
     {
-        if (Input.GetButtonDown("OpenMenu"))
+        if (Input.GetButtonDown("OpenMenu") && tutorialManager.isTutorialOn == false)
         {
             ToggleMenus();
         }

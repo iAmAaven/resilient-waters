@@ -22,7 +22,7 @@ public class WaterGun : MonoBehaviour
 
     void Start()
     {
-        fireRate = 1f / PlayerPrefs.GetFloat("WaterGunLevel", 1);
+        fireRate = (float)PlayerPrefs.GetInt("WaterGunLevel", 1);
         boatMovement = GetComponentInParent<BoatMovement>();
     }
     void Update()
@@ -32,7 +32,7 @@ public class WaterGun : MonoBehaviour
             && Time.time >= timer && Input.GetButton("Fire1"))
         {
             ShootWatergun();
-            timer = Time.time + fireRate;
+            timer = Time.time + 1f / fireRate;
         }
     }
     void ShootWatergun()
