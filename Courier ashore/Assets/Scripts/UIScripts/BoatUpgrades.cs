@@ -50,7 +50,7 @@ public class BoatUpgrades : MonoBehaviour
     public ResourceInventory resourceInventory;
     public CreditManager creditManager;
 
-    void Start()
+    void OnEnable()
     {
         LoadAllRequirements();
         CheckOutBoat();
@@ -60,15 +60,17 @@ public class BoatUpgrades : MonoBehaviour
     {
         int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
 
-        if (boatHP < PlayerPrefs.GetInt("BoatDurabilityLevel") * 10
+        if (boatHP < PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10
             && resourceInventory.woodAmount >= repairRequiredWood
             && creditManager.credits >= repairRequiredCredits)
         {
             resourceInventory.woodAmount -= repairRequiredWood;
             creditManager.credits -= repairRequiredCredits;
 
-            PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel") * 10);
-            repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+            PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10);
+            repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+
+            RefreshRequirementTexts();
         }
         else
         {
@@ -80,7 +82,7 @@ public class BoatUpgrades : MonoBehaviour
     {
         int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
 
-        if (boatHP == PlayerPrefs.GetInt("BoatDurabilityLevel") * 10)
+        if (boatHP == PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10)
         {
             repairDialogueText.dialogueText = "Your boat seems fine to me...";
         }
@@ -108,19 +110,27 @@ public class BoatUpgrades : MonoBehaviour
             PlayerPrefs.SetFloat("BoatSpeed", 5f + boatSpeedLevel);
             PlayerPrefs.SetInt("BoatSpeedLevel", boatSpeedLevel);
 
+            speedRequiredWood = RaisedRequirement(speedRequiredWood, speedRequiredWoodText);
+            speedRequiredCoal = RaisedRequirement(speedRequiredCoal, speedRequiredCoalText);
+            speedRequiredGold = RaisedRequirement(speedRequiredGold, speedRequiredGoldText);
+            speedRequiredCredits = RaisedRequirement(speedRequiredCredits, speedRequiredCreditsText);
+
             if (boatSpeedLevel >= maxLevel || boatSpeedLevel >= 3)
             {
                 boatSpeedLevelText.text = "MAX";
+                speedRequiredWoodText.text = "MAX";
+                speedRequiredCoalText.text = "MAX";
+                speedRequiredGoldText.text = "MAX";
+                speedRequiredCreditsText.text = "MAX";
+
+                return;
             }
             else
             {
                 boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
             }
 
-            speedRequiredWood = RaisedRequirement(speedRequiredWood, speedRequiredWoodText);
-            speedRequiredCoal = RaisedRequirement(speedRequiredCoal, speedRequiredCoalText);
-            speedRequiredGold = RaisedRequirement(speedRequiredGold, speedRequiredGoldText);
-            speedRequiredCredits = RaisedRequirement(speedRequiredCredits, speedRequiredCreditsText);
+            RefreshRequirementTexts();
         }
         else
         {
@@ -143,19 +153,27 @@ public class BoatUpgrades : MonoBehaviour
             waterGunLevel++;
             PlayerPrefs.SetInt("WaterGunLevel", waterGunLevel);
 
+            gunRequiredWood = RaisedRequirement(gunRequiredWood, gunRequiredWoodText);
+            gunRequiredIron = RaisedRequirement(gunRequiredIron, gunRequiredIronText);
+            gunRequiredGold = RaisedRequirement(gunRequiredGold, gunRequiredGoldText);
+            gunRequiredCredits = RaisedRequirement(gunRequiredCredits, gunRequiredCreditsText);
+
             if (waterGunLevel >= maxLevel || waterGunLevel >= 3)
             {
                 waterGunLevelText.text = "MAX";
+                gunRequiredWoodText.text = "MAX";
+                gunRequiredIronText.text = "MAX";
+                gunRequiredGoldText.text = "MAX";
+                gunRequiredCreditsText.text = "MAX";
+
+                return;
             }
             else
             {
                 waterGunLevelText.text = "LVL " + waterGunLevel;
             }
 
-            gunRequiredWood = RaisedRequirement(gunRequiredWood, gunRequiredWoodText);
-            gunRequiredIron = RaisedRequirement(gunRequiredIron, gunRequiredIronText);
-            gunRequiredGold = RaisedRequirement(gunRequiredGold, gunRequiredGoldText);
-            gunRequiredCredits = RaisedRequirement(gunRequiredCredits, gunRequiredCreditsText);
+            RefreshRequirementTexts();
         }
         else
         {
@@ -177,20 +195,29 @@ public class BoatUpgrades : MonoBehaviour
 
             boatDurabilityLevel++;
             PlayerPrefs.SetInt("BoatDurabilityLevel", boatDurabilityLevel);
+            PlayerPrefs.SetInt("BoatHP", boatDurabilityLevel * 10);
+
+            durabRequiredWood = RaisedRequirement(durabRequiredWood, durabRequiredWoodText);
+            durabRequiredStone = RaisedRequirement(durabRequiredStone, durabRequiredStoneText);
+            durabRequiredIron = RaisedRequirement(durabRequiredIron, durabRequiredIronText);
+            durabRequiredCredits = RaisedRequirement(durabRequiredCredits, durabRequiredCreditsText);
 
             if (boatDurabilityLevel >= maxLevel || boatDurabilityLevel >= 3)
             {
                 boatDurabilityLevelText.text = "MAX";
+                durabRequiredWoodText.text = "MAX";
+                durabRequiredStoneText.text = "MAX";
+                durabRequiredIronText.text = "MAX";
+                durabRequiredCreditsText.text = "MAX";
+
+                return;
             }
             else
             {
                 boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
             }
 
-            durabRequiredWood = RaisedRequirement(durabRequiredWood, durabRequiredWoodText);
-            durabRequiredStone = RaisedRequirement(durabRequiredStone, durabRequiredStoneText);
-            durabRequiredIron = RaisedRequirement(durabRequiredIron, durabRequiredIronText);
-            durabRequiredCredits = RaisedRequirement(durabRequiredCredits, durabRequiredCreditsText);
+            RefreshRequirementTexts();
         }
         else
         {
@@ -222,9 +249,27 @@ public class BoatUpgrades : MonoBehaviour
             PlayerPrefs.SetInt("BoatLevel", boatLevel);
             PlayerPrefs.SetInt("MaxBoatLevel", maxLevel);
 
+            buyBoatRequiredWood = RaisedRequirement(buyBoatRequiredWood, buyBoatRequiredWoodText);
+            buyBoatRequiredStone = RaisedRequirement(buyBoatRequiredStone, buyBoatRequiredStoneText);
+            buyBoatRequiredCoal = RaisedRequirement(buyBoatRequiredCoal, buyBoatRequiredCoalText);
+            buyBoatRequiredIron = RaisedRequirement(buyBoatRequiredIron, buyBoatRequiredIronText);
+            buyBoatRequiredGold = RaisedRequirement(buyBoatRequiredGold, buyBoatRequiredGoldText);
+            buyBoatRequiredGem = RaisedRequirement(buyBoatRequiredGem, buyBoatRequiredGemText);
+            buyBoatRequiredCredits = RaisedRequirement(buyBoatRequiredCredits, buyBoatRequiredCreditsText);
+
             if (boatLevel >= 3)
             {
                 boatLevelText.text = "MAX";
+
+                buyBoatRequiredWoodText.text = "MAX";
+                buyBoatRequiredStoneText.text = "MAX";
+                buyBoatRequiredCoalText.text = "MAX";
+                buyBoatRequiredIronText.text = "MAX";
+                buyBoatRequiredGoldText.text = "MAX";
+                buyBoatRequiredGemText.text = "MAX";
+                buyBoatRequiredCreditsText.text = "MAX";
+
+                return;
             }
             else
             {
@@ -234,13 +279,7 @@ public class BoatUpgrades : MonoBehaviour
                 boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
             }
 
-            buyBoatRequiredWood = RaisedRequirement(buyBoatRequiredWood, buyBoatRequiredWoodText);
-            buyBoatRequiredStone = RaisedRequirement(buyBoatRequiredStone, buyBoatRequiredStoneText);
-            buyBoatRequiredCoal = RaisedRequirement(buyBoatRequiredCoal, buyBoatRequiredCoalText);
-            buyBoatRequiredIron = RaisedRequirement(buyBoatRequiredIron, buyBoatRequiredIronText);
-            buyBoatRequiredGold = RaisedRequirement(buyBoatRequiredGold, buyBoatRequiredGoldText);
-            buyBoatRequiredGem = RaisedRequirement(buyBoatRequiredGem, buyBoatRequiredGemText);
-            buyBoatRequiredCredits = RaisedRequirement(buyBoatRequiredCredits, buyBoatRequiredCreditsText);
+            RefreshRequirementTexts();
         }
         else
         {
@@ -257,7 +296,7 @@ public class BoatUpgrades : MonoBehaviour
 
     public void RefreshRequirementTexts()
     {
-        repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel") * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+        repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP", 10) + "";
 
         speedRequiredWoodText.text = speedRequiredWood + "";
         speedRequiredCoalText.text = speedRequiredCoal + "";

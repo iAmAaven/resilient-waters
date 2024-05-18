@@ -66,13 +66,19 @@ public class ShadowTidesBoat : MonoBehaviour
 
         if (navMeshAgent.velocity.magnitude > 0.5f)
         {
-            movingEngine.SetActive(true);
-            stationaryEngine.SetActive(false);
+            if (movingEngine != null && stationaryEngine != null)
+            {
+                movingEngine.SetActive(true);
+                stationaryEngine.SetActive(false);
+            }
         }
         else
         {
-            movingEngine.SetActive(false);
-            stationaryEngine.SetActive(true);
+            if (movingEngine != null && stationaryEngine != null)
+            {
+                movingEngine.SetActive(false);
+                stationaryEngine.SetActive(true);
+            }
         }
     }
 

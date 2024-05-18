@@ -30,7 +30,7 @@ public class Island : MonoBehaviour
     increasing = false,                 // Keeps track whether the coroutine "IncreaseHarvest()" is running
                                         // when false, the coroutine can be started by pressing "Interact"
     decreasing = false;                 // Keeps track whether the coroutine "DecreaseHarvest()" is running
-                                        // when false, the coroutine can be started by pressing "Interact"
+                                        // when false, the coroutine can be started by releasing "Interact"
 
     private BoatMovement boatMovement;
 

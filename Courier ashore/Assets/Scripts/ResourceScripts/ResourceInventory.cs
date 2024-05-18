@@ -10,36 +10,42 @@ public class ResourceInventory : MonoBehaviour
     public int minWood;
     public int maxWood;
     public TextMeshProUGUI woodText;
+    public GameObject woodGottenText;
 
     [Header("Stone")]
     public int stoneAmount;
     public int minStone;
     public int maxStone;
     public TextMeshProUGUI stoneText;
+    public GameObject stoneGottenText;
 
     [Header("Coal")]
     public int coalAmount;
     public int minCoal;
     public int maxCoal;
     public TextMeshProUGUI coalText;
+    public GameObject coalGottenText;
 
     [Header("Iron")]
     public int ironAmount;
     public int minIron;
     public int maxIron;
     public TextMeshProUGUI ironText;
+    public GameObject ironGottenText;
 
     [Header("Gold")]
     public int goldAmount;
     public int minGold;
     public int maxGold;
     public TextMeshProUGUI goldText;
+    public GameObject goldGottenText;
 
     [Header("Gem")]
     public int gemAmount;
     public int minGem;
     public int maxGem;
     public TextMeshProUGUI gemText;
+    public GameObject gemGottenText;
 
     void Start()
     {
@@ -71,26 +77,32 @@ public class ResourceInventory : MonoBehaviour
 
     public void DealIslandResources(float stoneChance, float coalChance, float goldChance)
     {
-        woodAmount += Random.Range(minWood, maxWood + 1);
-        stoneAmount = RandomChanceAtResource(stoneAmount, stoneChance, 1, (maxStone + 1) / 2, "stone");
-        coalAmount = RandomChanceAtResource(coalAmount, coalChance, 1, (maxCoal + 1) / 2, "coal");
-        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
+        int randomWood = Random.Range(minWood, maxWood + 1);
+        woodAmount += randomWood;
+        StartCoroutine(PopUpResource(woodGottenText, randomWood));
 
-        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem");
+        stoneAmount = RandomChanceAtResource(stoneAmount, stoneChance, 1, (maxStone + 1) / 2, "stone", stoneGottenText);
+        coalAmount = RandomChanceAtResource(coalAmount, coalChance, 1, (maxCoal + 1) / 2, "coal", coalGottenText);
+        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold", goldGottenText);
+
+        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem", gemGottenText);
         RefreshResources();
     }
     public void DealBigRockResources(float coalChance, float ironChance, float goldChance)
     {
-        stoneAmount += Random.Range(minStone, maxStone + 1);
-        coalAmount = RandomChanceAtResource(coalAmount, coalChance, minCoal, maxCoal + 1, "coal");
-        ironAmount = RandomChanceAtResource(ironAmount, ironChance, minIron, maxIron + 1, "iron");
-        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold");
+        int randomStone = Random.Range(minStone, maxStone + 1);
+        stoneAmount += randomStone;
+        StartCoroutine(PopUpResource(stoneGottenText, randomStone));
 
-        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem");
+        coalAmount = RandomChanceAtResource(coalAmount, coalChance, minCoal, maxCoal + 1, "coal", coalGottenText);
+        ironAmount = RandomChanceAtResource(ironAmount, ironChance, minIron, maxIron + 1, "iron", ironGottenText);
+        goldAmount = RandomChanceAtResource(goldAmount, goldChance, minGold, maxGold + 1, "gold", goldGottenText);
+
+        gemAmount = RandomChanceAtResource(gemAmount, 0.05f, minGem, maxGem + 1, "gem", gemGottenText);
         RefreshResources();
     }
 
-    int RandomChanceAtResource(int amountOfResource, float chance, int minAmount, int maxAmount, string type)
+    int RandomChanceAtResource(int amountOfResource, float chance, int minAmount, int maxAmount, string type, GameObject resourcePopUpText)
     {
         int resourceAmountBefore = amountOfResource;
         int addedAmountOfResource;
@@ -102,7 +114,7 @@ public class ResourceInventory : MonoBehaviour
             amountOfResource += Random.Range(minAmount, maxAmount);
             addedAmountOfResource = amountOfResource - resourceAmountBefore;
 
-            Debug.Log(addedAmountOfResource + " " + type + " given!");
+            StartCoroutine(PopUpResource(resourcePopUpText, addedAmountOfResource));
         }
 
         return amountOfResource;
@@ -115,5 +127,13 @@ public class ResourceInventory : MonoBehaviour
     int LoadResources(string prefName)
     {
         return PlayerPrefs.GetInt(prefName);
+    }
+
+    IEnumerator PopUpResource(GameObject popUpText, int amountGotten)
+    {
+        popUpText.SetActive(true);
+        popUpText.GetComponentInChildren<TextMeshProUGUI>().text = "+" + amountGotten;
+        yield return new WaitForSeconds(3f);
+        popUpText.gameObject.SetActive(false);
     }
 }

@@ -22,7 +22,7 @@ public class HarvestUpgrades : MonoBehaviour
     public ResourceInventory resourceInventory;
     public CreditManager creditManager;
 
-    void Start()
+    void OnEnable()
     {
         harvestLevel = PlayerPrefs.GetInt("HarvestLevel", 1);
         LoadAllRequirements();
@@ -50,15 +50,6 @@ public class HarvestUpgrades : MonoBehaviour
             harvestLevel++;
             PlayerPrefs.SetInt("HarvestLevel", harvestLevel);
 
-            if (harvestLevel >= maxUpgradeLevel)
-            {
-                harvestLevelText.text = "MAX";
-            }
-            else
-            {
-                harvestLevelText.text = "LVL " + harvestLevel;
-            }
-
             harvestRequiredWood = RaisedRequirement(harvestRequiredWood, harvestRequiredWoodText);
             harvestRequiredStone = RaisedRequirement(harvestRequiredStone, harvestRequiredStoneText);
             harvestRequiredCoal = RaisedRequirement(harvestRequiredCoal, harvestRequiredCoalText);
@@ -66,6 +57,23 @@ public class HarvestUpgrades : MonoBehaviour
             harvestRequiredGold = RaisedRequirement(harvestRequiredGold, harvestRequiredGoldText);
             harvestRequiredGem = RaisedRequirement(harvestRequiredGem, harvestRequiredGemText);
             harvestRequiredCredits = RaisedRequirement(harvestRequiredCredits, harvestRequiredCreditsText);
+
+            if (harvestLevel >= maxUpgradeLevel)
+            {
+                harvestLevelText.text = "MAX";
+                harvestRequiredWoodText.text = "MAX";
+                harvestRequiredStoneText.text = "MAX";
+                harvestRequiredCoalText.text = "MAX";
+                harvestRequiredIronText.text = "MAX";
+                harvestRequiredGoldText.text = "MAX";
+                harvestRequiredGemText.text = "MAX";
+                harvestRequiredCreditsText.text = "MAX";
+                return;
+            }
+            else
+            {
+                harvestLevelText.text = "LVL " + harvestLevel;
+            }
 
             RefreshRequirementTexts();
         }
