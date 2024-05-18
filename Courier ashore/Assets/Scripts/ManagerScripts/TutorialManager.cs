@@ -5,16 +5,18 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public GameObject tutorialStart;
+    private BoatMovement boatMovement;
     public bool isTutorialOn = false;
     public void StartTutorial()
     {
+        boatMovement = FindObjectOfType<BoatMovement>();
+        boatMovement.canPlayerMove = false;
         isTutorialOn = true;
         tutorialStart.SetActive(true);
-        Time.timeScale = 0;
     }
     public void FinishTutorial()
     {
-        Time.timeScale = 1;
+        boatMovement.canPlayerMove = true;
         isTutorialOn = false;
     }
 }

@@ -23,7 +23,7 @@ public class BoatMovement : MonoBehaviour
 
     void Start()
     {
-        acceleration = PlayerPrefs.GetFloat("BoatSpeed", 5);
+        acceleration = PlayerPrefs.GetFloat("BoatSpeed", acceleration);
         maxSpeed = acceleration;
         boatAnim = GetComponentInChildren<Animator>();
 
@@ -41,7 +41,6 @@ public class BoatMovement : MonoBehaviour
         {
             if (movementInput != Vector2.zero)
             {
-                boatAnim.SetBool("IsMoving", true);
                 rb.AddForce(transform.up * acceleration * movementInput.y);
 
                 float torque = -movementInput.x * rotationSpeed;
@@ -50,18 +49,45 @@ public class BoatMovement : MonoBehaviour
             }
             else
             {
-                boatAnim.SetBool("IsMoving", false);
                 rb.angularVelocity *= 0.9f;
             }
 
             if (movementInput.y == 0f)
             {
                 rb.velocity *= 0.98f;
+                boatAnim.SetBool("IsMoving", false);
+                boatAnim.SetBool("IsGoingBackwards", false);
+            }
+            else if (movementInput.y > 0f)
+            {
+                boatAnim.SetBool("IsMoving", true);
+                boatAnim.SetBool("IsGoingBackwards", false);
+            }
+            else
+            {
+                boatAnim.SetBool("IsMoving", false);
+                boatAnim.SetBool("IsGoingBackwards", true);
             }
 
             if (rb.velocity.magnitude > maxSpeed)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+
+            if (movementInput.x > 0.01f)
+            {
+                boatAnim.SetBool("IsTurningRight", true);
+                boatAnim.SetBool("IsTurningLeft", false);
+            }
+            else if (movementInput.x < -0.01f)
+            {
+                boatAnim.SetBool("IsTurningRight", false);
+                boatAnim.SetBool("IsTurningLeft", true);
+            }
+            else
+            {
+                boatAnim.SetBool("IsTurningRight", false);
+                boatAnim.SetBool("IsTurningLeft", false);
             }
         }
         else
@@ -69,6 +95,9 @@ public class BoatMovement : MonoBehaviour
             rb.velocity *= 0.98f;
             rb.angularVelocity *= 0.9f;
             boatAnim.SetBool("IsMoving", false);
+            boatAnim.SetBool("IsTurningLeft", false);
+            boatAnim.SetBool("IsTurningRight", false);
+            boatAnim.SetBool("IsGoingBackwards", false);
         }
     }
 }

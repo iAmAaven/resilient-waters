@@ -26,8 +26,8 @@ public class BoatHP : MonoBehaviour
             dangerousBoatSpeed = 4f;
         }
         boatMovement = GetComponent<BoatMovement>();
-        boatHitPoints = PlayerPrefs.GetInt("BoatHP");
         boatMaxHitPoints = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10;
+        boatHitPoints = PlayerPrefs.GetInt("BoatHP", 10);
 
         healthUI.RefreshHealth();
         rb = GetComponent<Rigidbody2D>();

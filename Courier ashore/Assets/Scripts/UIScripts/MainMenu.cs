@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Animator cameraAnim;
+
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteAll();
+
+        SceneManager.LoadScene("HomeIsland");
+    }
     public void Play()
     {
         cameraAnim.SetTrigger("Play");

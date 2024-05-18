@@ -10,7 +10,7 @@ public class Rescue : MonoBehaviour
     {
         if (playerDied)
         {
-            PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel") * 10 / 2);
+            PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 / 2);
         }
 
         Invoke("GoToHomeIsland", 25f);

@@ -26,9 +26,11 @@ public class DayCycle : MonoBehaviour
     private string currentShift;
     private bool isTextFlashing = false;
     private BoatMovement boatMovement;
+    private TutorialManager tutorialManager;
 
     void Start()
     {
+        tutorialManager = FindObjectOfType<TutorialManager>();
         timer = timeSpeed;
         boatMovement = FindObjectOfType<BoatMovement>();
         currentShift = PlayerPrefs.GetString("CurrentShift", "Day");
@@ -39,7 +41,7 @@ public class DayCycle : MonoBehaviour
 
     void Update()
     {
-        if (Time.time >= timer)
+        if (tutorialManager.isTutorialOn == false && Time.time >= timer)
         {
             RefreshTime();
             timer = Time.time + timeSpeed;
