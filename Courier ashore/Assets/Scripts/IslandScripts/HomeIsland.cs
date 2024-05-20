@@ -7,6 +7,7 @@ public class HomeIsland : MonoBehaviour
 {
     public bool canGoAshore = false;
     public GameObject goHomeElement;
+    public SceneChange sceneChange;
     private DayCycle dayCycle;
     private BoatMovement boatMovement;
 
@@ -43,8 +44,14 @@ public class HomeIsland : MonoBehaviour
             && boatMovement.playerPassedOut == false
             && boatMovement.canPlayerMove == true)
         {
-            // TODO: ADD SMOOTH TRANSITION
-            GoHome();
+            if (sceneChange != null)
+            {
+                sceneChange.ChangeScene("HomeIsland");
+            }
+            else
+            {
+                GoHome();
+            }
         }
     }
 

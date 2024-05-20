@@ -103,19 +103,23 @@ public class HarvestUpgrades : MonoBehaviour
     {
         int resourceRequired = requiredResource;
 
-        if (PlayerPrefs.GetInt(upgradeLevel) == 2)
+        if (PlayerPrefs.GetInt(upgradeLevel) == 1 || PlayerPrefs.GetInt(upgradeLevel) == 0)
+        {
+            levelText.text = "LVL " + 1;
+        }
+        else if (PlayerPrefs.GetInt(upgradeLevel) == 2 && PlayerPrefs.GetInt(upgradeLevel) < maxUpgradeLevel)
         {
             levelText.text = "LVL " + 2;
             resourceRequired = (int)(requiredResource * 1.15);
         }
-        else if (PlayerPrefs.GetInt(upgradeLevel) >= 3)
+        else if (PlayerPrefs.GetInt(upgradeLevel) >= 3 && PlayerPrefs.GetInt(upgradeLevel) < maxUpgradeLevel)
         {
             levelText.text = "MAX";
             resourceRequired = (int)(requiredResource * 1.15 * 1.15);
         }
         else
         {
-            levelText.text = "LVL " + 1;
+            levelText.text = "MAX";
         }
         return resourceRequired;
     }

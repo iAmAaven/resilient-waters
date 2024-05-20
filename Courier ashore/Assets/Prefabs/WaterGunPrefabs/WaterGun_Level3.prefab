@@ -84,6 +84,13 @@ MonoBehaviour:
   firstLevel: 0
   secondLevel: 0
   thirdLevel: 1
+  bulletSounds:
+  - {fileID: 8300000, guid: 903dd7f9aebc63440ae65c5693ce8271, type: 3}
+  - {fileID: 8300000, guid: d31e26da8d52ae34e98cec2874fbaf96, type: 3}
+  - {fileID: 8300000, guid: 925366fdb183aec459ea61d6e4564b4c, type: 3}
+  - {fileID: 8300000, guid: f51f67e6d9b8a934c8be68aeb6526ea7, type: 3}
+  - {fileID: 8300000, guid: 994550bff5260984d8a2355c40535189, type: 3}
+  - {fileID: 8300000, guid: 7faad528d99aa6349a3327f7f37e3cb7, type: 3}
   levelOneShootPoint: {fileID: 0}
   levelTwoShootPoints: []
   levelThreeShootPoints:

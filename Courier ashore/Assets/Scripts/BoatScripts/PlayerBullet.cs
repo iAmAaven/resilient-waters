@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 2f);
     }
 
     void Update()

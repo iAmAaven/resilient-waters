@@ -58,9 +58,10 @@ public class BoatUpgrades : MonoBehaviour
 
     public void RepairBoat()
     {
-        int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
+        repairRequiredWood = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP", 10);
+        // int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
 
-        if (boatHP < PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10
+        if (repairRequiredWood > 0
             && resourceInventory.woodAmount >= repairRequiredWood
             && creditManager.credits >= repairRequiredCredits)
         {
@@ -68,8 +69,10 @@ public class BoatUpgrades : MonoBehaviour
             creditManager.credits -= repairRequiredCredits;
 
             PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10);
-            repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP") + "";
+            repairRequiredWoodText.text = repairRequiredWood + "";
 
+            StopCoroutine(repairDialogueText.TypeText());
+            repairDialogueText.textMesh.text = "There you go! Good as new...";
             RefreshRequirementTexts();
         }
         else
@@ -330,19 +333,23 @@ public class BoatUpgrades : MonoBehaviour
     {
         int resourceRequired = requiredResource;
 
-        if (PlayerPrefs.GetInt(upgradeLevel) == 2)
+        if (PlayerPrefs.GetInt(upgradeLevel) == 1 || PlayerPrefs.GetInt(upgradeLevel) == 0)
+        {
+            levelText.text = "LVL " + 1;
+        }
+        else if (PlayerPrefs.GetInt(upgradeLevel) == 2 && PlayerPrefs.GetInt(upgradeLevel) < maxLevel)
         {
             levelText.text = "LVL " + 2;
             resourceRequired = (int)(requiredResource * 1.15);
         }
-        else if (PlayerPrefs.GetInt(upgradeLevel) >= 3)
+        else if (PlayerPrefs.GetInt(upgradeLevel) >= 3 && PlayerPrefs.GetInt(upgradeLevel) < maxLevel)
         {
             levelText.text = "MAX";
             resourceRequired = (int)(requiredResource * 1.15 * 1.15);
         }
         else
         {
-            levelText.text = "LVL " + 1;
+            levelText.text = "MAX";
         }
         return resourceRequired;
     }

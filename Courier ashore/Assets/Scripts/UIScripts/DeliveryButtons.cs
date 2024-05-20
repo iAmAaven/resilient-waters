@@ -11,13 +11,20 @@ public class DeliveryButtons : MonoBehaviour
     public Slider denySlider;
     public GameObject demandMorePay, deniedCost, deniedWithoutCost;
 
+    [Header("Audios")]
+    public AudioClip acceptedSFX;
+    public AudioClip deniedSFX, singleSFX, cashInSFX;
+
     private int deniesLeft;
     private DeliveryUI deliveryUI;
     private Package _activePackage;
     private IslandPackageManager islandPackageManager;
+    private AudioSource oneShotAudio;
 
     void Start()
     {
+        oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
+
         deniesLeft = (int)denySlider.maxValue;
 
         islandPackageManager = FindObjectOfType<IslandPackageManager>();
@@ -31,6 +38,12 @@ public class DeliveryButtons : MonoBehaviour
     public void ScanPackage()
     {
         _activePackage = deliveryUI.activePackage;
+
+        if (_activePackage.contraband != "yes" && _activePackage.contraband != "no")
+        {
+            oneShotAudio.PlayOneShot(singleSFX);
+        }
+
         if (_activePackage.isContraband)
         {
             _activePackage.contraband = "yes";
@@ -50,6 +63,7 @@ public class DeliveryButtons : MonoBehaviour
     {
         _activePackage = deliveryUI.activePackage;
         CreditManager creditManager = FindObjectOfType<CreditManager>();
+        oneShotAudio.PlayOneShot(deniedSFX);
 
         if (_activePackage.contraband != "yes" && creditManager.credits >= 3 && deniesLeft > 0)
         {
@@ -73,6 +87,7 @@ public class DeliveryButtons : MonoBehaviour
     }
     public void AcceptPackage()
     {
+        oneShotAudio.PlayOneShot(acceptedSFX);
         _activePackage = deliveryUI.activePackage;
         DisableButtons();
         _activePackage.packageAccepted = true;
@@ -84,6 +99,7 @@ public class DeliveryButtons : MonoBehaviour
         _activePackage = deliveryUI.activePackage;
         if (_activePackage.contraband == "yes" && _activePackage.demandedMorePay == false)
         {
+            oneShotAudio.PlayOneShot(singleSFX);
             _activePackage.paycheck = (int)Math.Round(_activePackage.paycheck * 1.5, 0);
             deliveryUI.paycheckText.text = _activePackage.paycheck + "";
             _activePackage.demandedMorePay = true;
@@ -92,6 +108,7 @@ public class DeliveryButtons : MonoBehaviour
     public void CashPackageIn()
     {
         _activePackage = deliveryUI.activePackage;
+        oneShotAudio.PlayOneShot(cashInSFX);
         FindObjectOfType<CreditManager>().AddCredits(_activePackage.paycheck);
         delivered.SetActive(false);
         deliveryUI.ClearPackageInfo();

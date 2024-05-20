@@ -17,7 +17,7 @@ public class BoatMovement : MonoBehaviour
     [HideInInspector] public bool playerPassedOut = false;
 
     // PRIVATES
-    private Animator boatAnim;
+    public Animator boatAnim;
     private Rigidbody2D rb;
     private Vector2 movementInput;
 
@@ -25,7 +25,6 @@ public class BoatMovement : MonoBehaviour
     {
         acceleration = PlayerPrefs.GetFloat("BoatSpeed", acceleration);
         maxSpeed = acceleration;
-        boatAnim = GetComponentInChildren<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -55,18 +54,27 @@ public class BoatMovement : MonoBehaviour
             if (movementInput.y == 0f)
             {
                 rb.velocity *= 0.98f;
-                boatAnim.SetBool("IsMoving", false);
-                boatAnim.SetBool("IsGoingBackwards", false);
+                if (boatAnim != null)
+                {
+                    boatAnim.SetBool("IsMoving", false);
+                    boatAnim.SetBool("IsGoingBackwards", false);
+                }
             }
             else if (movementInput.y > 0f)
             {
-                boatAnim.SetBool("IsMoving", true);
-                boatAnim.SetBool("IsGoingBackwards", false);
+                if (boatAnim != null)
+                {
+                    boatAnim.SetBool("IsMoving", true);
+                    boatAnim.SetBool("IsGoingBackwards", false);
+                }
             }
             else
             {
-                boatAnim.SetBool("IsMoving", false);
-                boatAnim.SetBool("IsGoingBackwards", true);
+                if (boatAnim != null)
+                {
+                    boatAnim.SetBool("IsMoving", false);
+                    boatAnim.SetBool("IsGoingBackwards", true);
+                }
             }
 
             if (rb.velocity.magnitude > maxSpeed)
@@ -74,30 +82,36 @@ public class BoatMovement : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
 
-            if (movementInput.x > 0.01f)
+            if (boatAnim != null)
             {
-                boatAnim.SetBool("IsTurningRight", true);
-                boatAnim.SetBool("IsTurningLeft", false);
-            }
-            else if (movementInput.x < -0.01f)
-            {
-                boatAnim.SetBool("IsTurningRight", false);
-                boatAnim.SetBool("IsTurningLeft", true);
-            }
-            else
-            {
-                boatAnim.SetBool("IsTurningRight", false);
-                boatAnim.SetBool("IsTurningLeft", false);
+                if (movementInput.x > 0.01f)
+                {
+                    boatAnim.SetBool("IsTurningRight", true);
+                    boatAnim.SetBool("IsTurningLeft", false);
+                }
+                else if (movementInput.x < -0.01f)
+                {
+                    boatAnim.SetBool("IsTurningRight", false);
+                    boatAnim.SetBool("IsTurningLeft", true);
+                }
+                else
+                {
+                    boatAnim.SetBool("IsTurningRight", false);
+                    boatAnim.SetBool("IsTurningLeft", false);
+                }
             }
         }
         else
         {
             rb.velocity *= 0.98f;
             rb.angularVelocity *= 0.9f;
-            boatAnim.SetBool("IsMoving", false);
-            boatAnim.SetBool("IsTurningLeft", false);
-            boatAnim.SetBool("IsTurningRight", false);
-            boatAnim.SetBool("IsGoingBackwards", false);
+            if (boatAnim != null)
+            {
+                boatAnim.SetBool("IsMoving", false);
+                boatAnim.SetBool("IsTurningLeft", false);
+                boatAnim.SetBool("IsTurningRight", false);
+                boatAnim.SetBool("IsGoingBackwards", false);
+            }
         }
     }
 }

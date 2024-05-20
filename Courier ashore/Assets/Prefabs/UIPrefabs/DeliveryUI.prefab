@@ -306,7 +306,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.78867924, g: 0.78867924, b: 0.78867924, a: 1}
@@ -316,10 +316,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: e66f56305c6da1e429b7bd2b2bbcd0ce, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: b57936b24be8c1344bc67b113568b161, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: b57936b24be8c1344bc67b113568b161, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 8174c9774067fcd46b6e5a1c860f7551, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1836,6 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packagePrefab: {fileID: 6032412767826776585, guid: 7358dff49adf00f4881a74eb239dacb9, type: 3}
   shiftFinishedPrefab: {fileID: 5049816778005414571, guid: 8df70a4cf0646834e8d909b9792c04fd, type: 3}
+  isFinale: 0
 --- !u!1 &3468373017402967802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2271,7 @@ RectTransform:
   m_Father: {fileID: 1652845636818642142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2452,7 +2453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DEMAND MORE PAY
+  m_text: DEMAND MORE PAY FROM SENDER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
@@ -5930,6 +5931,10 @@ MonoBehaviour:
   demandMorePay: {fileID: 5521477606249722279}
   deniedCost: {fileID: 7024904925394882390}
   deniedWithoutCost: {fileID: 6724329656979257122}
+  acceptedSFX: {fileID: 8300000, guid: e2d81b20dd831cb419f84d2c09afcc6a, type: 3}
+  deniedSFX: {fileID: 8300000, guid: e5029f6c87cb8304c9a59efe74588ed0, type: 3}
+  singleSFX: {fileID: 8300000, guid: 839366d9e951d6e478e28ac076595107, type: 3}
+  cashInSFX: {fileID: 8300000, guid: f076a842993fb654db043e9eb3507b36, type: 3}
 --- !u!1 &9067322288114656912
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class DayCycle : MonoBehaviour
     private bool isTextFlashing = false;
     private BoatMovement boatMovement;
     private TutorialManager tutorialManager;
+    private bool isTransitioning = false;
 
     void Start()
     {
@@ -85,7 +86,7 @@ public class DayCycle : MonoBehaviour
 
             if (currentShift == "Day")
             {
-                if (boatMovement.playerPassedOut == false && currentHour == dayShiftPassOutHour)
+                if (boatMovement.playerPassedOut == false && currentHour == dayShiftPassOutHour && isTransitioning == false)
                 {
                     NovaPassedOut();
                     return;
@@ -102,7 +103,7 @@ public class DayCycle : MonoBehaviour
             }
             else if (currentShift == "Night")
             {
-                if (currentHour == nightShiftPassOutHour)
+                if (currentHour == nightShiftPassOutHour && isTransitioning == false)
                 {
                     NovaPassedOut();
                 }
@@ -127,6 +128,7 @@ public class DayCycle : MonoBehaviour
     {
         Debug.Log("Nova passed out");
         FindObjectOfType<PassOut>().PassedOut();
+        isTransitioning = true;
     }
 
     IEnumerator LightChange(float lightFadeDuration, Color32 startColor, Color32 targetColor)

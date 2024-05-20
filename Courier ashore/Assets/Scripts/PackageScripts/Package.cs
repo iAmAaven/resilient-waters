@@ -26,6 +26,7 @@ public class Package : MonoBehaviour
     public GameObject checkmark;
     public GameObject newMarker;
     public GameObject fastDelivery;
+    public bool isFinale = false;
 
 
     // STATUS MANAGEMENT OF THE PACKAGE
@@ -89,10 +90,18 @@ public class Package : MonoBehaviour
         if (deliveryTime == 2)
         {
             paycheck = (int)(Random.Range(30, 41) * paycheckMultiplier);
+            if (isFinale == true)
+            {
+                paycheck = (int)(Random.Range(35, 46) * 1.5);
+            }
         }
         else
         {
             paycheck = (int)(Random.Range(10, 21) * paycheckMultiplier);
+            if (isFinale == true)
+            {
+                paycheck = (int)(Random.Range(20, 31) * 1.5);
+            }
         }
     }
     void RandomizeContraband()

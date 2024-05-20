@@ -54,7 +54,7 @@ public class PackageItem : MonoBehaviour
 
     void Update()
     {
-        if (canPickup && pickedUp == false && Input.GetButtonDown("Interact") && boatMovement.canPlayerMove == true)
+        if (canPickup && pickedUp == false && Input.GetButtonDown("Interact"))
         {
             PickedUp();
         }
@@ -89,15 +89,18 @@ public class PackageItem : MonoBehaviour
             Destroy(packageTracker);
 
         if (packageInfo.gameObject != null)
+        {
             Destroy(packageInfo.gameObject);
+        }
         FindObjectOfType<ControlUI>().packageDealer.DealNewPackage();
         deliveryUI.ClearPackageInfo();
         Destroy(gameObject);
     }
     IEnumerator DeliveryTimer()
     {
-        dayCycle = FindObjectOfType<DayCycle>();
-        float speed = dayCycle.timeSpeed;
+        // dayCycle = FindObjectOfType<DayCycle>();
+        // float speed = dayCycle.timeSpeed;
+        float speed = 4;
 
         while (true)
         {
