@@ -19,11 +19,15 @@ public class TextWriter : MonoBehaviour
     public float closeAfter;
 
     // PRIVATES
-    private TextMeshProUGUI textMesh;
+    [HideInInspector] public TextMeshProUGUI textMesh;
+    private DialogueSounds dialogueSounds;
+    private AudioSource oneShotAudio;
     private string processedText;
 
     void OnEnable()
     {
+        oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
+        dialogueSounds = FindObjectOfType<DialogueSounds>();
         textMesh = GetComponent<TextMeshProUGUI>();
         StartCoroutine(TypeText());
     }
@@ -33,6 +37,11 @@ public class TextWriter : MonoBehaviour
         processedText = "";
         for (int i = 0; i < dialogueText.Length; i++)
         {
+            if (i % 3 == 0)
+            {
+                oneShotAudio.PlayOneShot(dialogueSounds.blipSounds[Random.Range(0, dialogueSounds.blipSounds.Length)]);
+            }
+
             processedText += dialogueText[i];
             textMesh.text = processedText;
             yield return new WaitForSeconds(timeBetweenChars);

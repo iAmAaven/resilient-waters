@@ -8,6 +8,7 @@ TagManager:
   - Island
   - Danger
   - Enemy
+  - OneShotAudio
   layers:
   - Default
   - TransparentFX

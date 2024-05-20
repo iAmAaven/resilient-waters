@@ -6,10 +6,13 @@ public class EnemyHP : MonoBehaviour
 {
     public int enemyHealth;
     public SpriteRenderer graphics;
+    public AudioClip[] damageAudios;
+    private AudioSource oneShotAudio;
     private bool isAughFrames = false;
     private ShadowTidesBoat shadowTidesBoat;
     void Start()
     {
+        oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
         shadowTidesBoat = GetComponent<ShadowTidesBoat>();
         enemyHealth *= PlayerPrefs.GetInt("WaterGunLevel", 1);
     }
@@ -17,6 +20,8 @@ public class EnemyHP : MonoBehaviour
     {
         enemyHealth--;
         shadowTidesBoat.playerDetectRadius = shadowTidesBoat.startingRadius * 2;
+        oneShotAudio.PlayOneShot(damageAudios[Random.Range(0, damageAudios.Length)]);
+
         if (isAughFrames == false)
         {
             StartCoroutine(AughFrames());
@@ -24,7 +29,6 @@ public class EnemyHP : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
-            // TODO: ADD A DEATH ANIMATION (EXPLOSION)
             GetComponent<ShadowTidesBoat>().EnemyDeath();
         }
     }

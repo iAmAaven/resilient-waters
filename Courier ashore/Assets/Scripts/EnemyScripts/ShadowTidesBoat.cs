@@ -18,7 +18,7 @@ public class ShadowTidesBoat : MonoBehaviour
 
     [Header("References")]
     public GameObject graphics;
-    public GameObject movingEngine, stationaryEngine;
+    public GameObject deathPrefab;
 
     [HideInInspector] public float startingRadius;
     private Transform playerPos;
@@ -62,23 +62,6 @@ public class ShadowTidesBoat : MonoBehaviour
         if (playerDetected == false || playerBoat.isCarryingContraband == false)
         {
             GoToRandomPoint();
-        }
-
-        if (navMeshAgent.velocity.magnitude > 0.5f)
-        {
-            if (movingEngine != null && stationaryEngine != null)
-            {
-                movingEngine.SetActive(true);
-                stationaryEngine.SetActive(false);
-            }
-        }
-        else
-        {
-            if (movingEngine != null && stationaryEngine != null)
-            {
-                movingEngine.SetActive(false);
-                stationaryEngine.SetActive(true);
-            }
         }
     }
 
@@ -168,6 +151,8 @@ public class ShadowTidesBoat : MonoBehaviour
         isChasing = false;
         wasChasing = false;
         FindObjectOfType<EnemySpawner>().SpawnNewEnemy();
+        GameObject deathBoat = Instantiate(deathPrefab, transform.position, graphics.transform.rotation);
+        Destroy(deathBoat, 3f);
         Destroy(gameObject);
     }
 }

@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PassOutRescue.unity
     guid: c33c9df5b90ad0941ad1de8a51f4bb26
+  - enabled: 1
+    path: Assets/Scenes/FinaleFailure.unity
+    guid: 1c0840dc5e0a4d6479ca31cd08906131
+  - enabled: 1
+    path: Assets/Scenes/FinaleSuccess.unity
+    guid: 5095606aedc39134b961569c6dbcfb24
+  - enabled: 1
+    path: Assets/Scenes/ResilientWatersFinale.unity
+    guid: e66875703e78c4646898c7e99e2ab2fb
+  - enabled: 1
+    path: Assets/Scenes/FinaleCutScene.unity
+    guid: 66d87ea0fc313024ab4acea48d19be36
   m_configObjects: {}

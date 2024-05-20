@@ -5,7 +5,7 @@ using UnityEngine;
 public class PackageDealer : MonoBehaviour
 {
     public GameObject packagePrefab, shiftFinishedPrefab;
-
+    public bool isFinale = false;
     private Boat boat;
     private DayCycle dayCycle;
     void Start()
@@ -20,11 +20,11 @@ public class PackageDealer : MonoBehaviour
 
     public void DealNewPackage()
     {
-        if (dayCycle != null)
+        if (dayCycle != null || isFinale == true)
         {
             string shift = PlayerPrefs.GetString("CurrentShift", "Day");
 
-            if (dayCycle.shiftFinished == false)
+            if (isFinale == true || (dayCycle != null && dayCycle.shiftFinished == false))
             {
                 GameObject newPackage = Instantiate(packagePrefab, transform);
                 if (shift == "Day")

@@ -8,18 +8,22 @@ public class BoatHP : MonoBehaviour
     public int boatMaxHitPoints;
     public float dangerousBoatSpeed;
     public float damageCooldown;
+    public bool isFinale = false;
 
-    private SpriteRenderer graphics;
+    public AudioClip damageSFX, destroyedSFX;
+    public SpriteRenderer graphics;
+
+    private AudioSource oneShotAudio;
     private HealthUI healthUI;
     private bool isAughFrames = false;
-    private Rigidbody2D rb;
-    private float timer;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public float hitTimer;
     private BoatMovement boatMovement;
 
     void Start()
     {
+        oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
         healthUI = FindObjectOfType<HealthUI>();
-        graphics = GetComponentInChildren<SpriteRenderer>();
         dangerousBoatSpeed = PlayerPrefs.GetFloat("BoatSpeed") - 2f;
         if (dangerousBoatSpeed < 4f)
         {
@@ -29,19 +33,14 @@ public class BoatHP : MonoBehaviour
         boatMaxHitPoints = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10;
         boatHitPoints = PlayerPrefs.GetInt("BoatHP", 10);
 
+        if (isFinale == true)
+        {
+            boatHitPoints = boatMaxHitPoints;
+            PlayerPrefs.SetInt("BoatHP", boatHitPoints);
+        }
+
         healthUI.RefreshHealth();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (Time.time >= timer && other.gameObject.tag == "Object")
-        {
-            if (rb.velocity.magnitude >= dangerousBoatSpeed)
-            {
-                BoatTakeDamage(1);
-            }
-        }
     }
 
     public void BoatTakeDamage(int damage)
@@ -49,7 +48,7 @@ public class BoatHP : MonoBehaviour
         if (boatMovement.playerPassedOut == false)
         {
             boatHitPoints -= damage;
-            timer = Time.time + damageCooldown;
+            hitTimer = Time.time + damageCooldown;
             Debug.Log("Boat took damage, HP: " + boatHitPoints);
             if (isAughFrames == false)
             {
@@ -65,7 +64,10 @@ public class BoatHP : MonoBehaviour
                 PlayerPrefs.SetInt("BoatHP", boatHitPoints);
                 healthUI.RefreshHealth();
                 FindObjectOfType<PassOut>().BoatDestroyed();
+                oneShotAudio.PlayOneShot(destroyedSFX);
+                return;
             }
+            oneShotAudio.PlayOneShot(damageSFX);
         }
     }
 

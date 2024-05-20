@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ReceiverNPC : MonoBehaviour
 {
-    public PackageItem packageForThisNPC;
+    public GameObject cue;
+
+    [HideInInspector] public PackageItem packageForThisNPC;
     private bool canGivePackage = false;
     private bool packageGiven = false;
     private BoatMovement boatMovement;
@@ -12,6 +14,8 @@ public class ReceiverNPC : MonoBehaviour
     void Start()
     {
         boatMovement = FindObjectOfType<BoatMovement>();
+        GetComponentInChildren<Canvas>().worldCamera = Camera.main;
+        cue.SetActive(false);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,6 +24,7 @@ public class ReceiverNPC : MonoBehaviour
         if (otherObj.tag == "Player")
         {
             canGivePackage = true;
+            cue.SetActive(true);
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -29,12 +34,13 @@ public class ReceiverNPC : MonoBehaviour
         if (otherObj.tag == "Player")
         {
             canGivePackage = false;
+            cue.SetActive(false);
         }
     }
 
     void Update()
     {
-        if (canGivePackage && packageGiven == false && Input.GetButtonDown("Interact") && boatMovement.canPlayerMove == true)
+        if (canGivePackage && packageGiven == false && Input.GetButtonDown("Interact"))
         {
             GivePackage();
         }

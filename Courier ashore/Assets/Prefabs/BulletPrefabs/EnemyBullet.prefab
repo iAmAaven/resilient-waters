@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   shootDirection: {x: 0, y: 0}
+  bulletSounds:
+  - {fileID: 8300000, guid: 1b21f7f2c5a8b2f4d805558db8092f58, type: 3}
+  - {fileID: 8300000, guid: 1017de8c210363e4b850dc7e0f7faefe, type: 3}
+  - {fileID: 8300000, guid: 70a5a3ea567e69441b6c7b9a09758b9e, type: 3}
 --- !u!50 &4638334267704405822
 Rigidbody2D:
   serializedVersion: 4

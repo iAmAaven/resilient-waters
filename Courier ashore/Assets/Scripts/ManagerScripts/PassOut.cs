@@ -7,6 +7,7 @@ public class PassOut : MonoBehaviour
 {
     public GameObject passedOut, boatDestroyed;
     public GameObject[] otherCanvases;
+    public bool isFinale = false;
     private BoatMovement boatMovement;
     private CreditManager creditManager;
 
@@ -47,7 +48,15 @@ public class PassOut : MonoBehaviour
             }
             passedOut.SetActive(false);
             boatDestroyed.SetActive(true);
-            Invoke("GoToDeathRescueScene", 4f);
+
+            if (isFinale == false)
+            {
+                Invoke("GoToDeathRescueScene", 4f);
+            }
+            else
+            {
+                Invoke("FinaleFailure", 4f);
+            }
         }
     }
 
@@ -58,5 +67,9 @@ public class PassOut : MonoBehaviour
     void GoToDeathRescueScene()
     {
         SceneManager.LoadScene("DeathRescue");
+    }
+    void FinaleFailure()
+    {
+        SceneManager.LoadScene("FinaleFailure");
     }
 }

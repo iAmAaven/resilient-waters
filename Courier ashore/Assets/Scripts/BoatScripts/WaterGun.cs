@@ -6,8 +6,9 @@ public class WaterGun : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float fireRate;
-
     public bool firstLevel = false, secondLevel = false, thirdLevel = false;
+    public AudioClip[] bulletSounds;
+    private AudioSource oneShotAudio;
 
     [Header("1st level gun")]
     public Transform levelOneShootPoint;
@@ -19,15 +20,20 @@ public class WaterGun : MonoBehaviour
     public Transform[] levelThreeShootPoints;
     private float timer = 0f;
     private BoatMovement boatMovement;
+    private Boat boat;
 
     void Start()
     {
+        oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
+
         fireRate = (float)PlayerPrefs.GetInt("WaterGunLevel", 1);
         boatMovement = GetComponentInParent<BoatMovement>();
+        boat = GetComponentInParent<Boat>();
     }
     void Update()
     {
-        if (boatMovement.canPlayerMove == true
+        if (boat.isCarryingContraband == true
+            && boatMovement.canPlayerMove == true
             && boatMovement.playerPassedOut == false
             && Time.time >= timer && Input.GetButton("Fire1"))
         {
@@ -37,6 +43,8 @@ public class WaterGun : MonoBehaviour
     }
     void ShootWatergun()
     {
+        oneShotAudio.PlayOneShot(bulletSounds[Random.Range(0, bulletSounds.Length)]);
+
         if (firstLevel)
         {
             GameObject newBullet = Instantiate(bulletPrefab, levelOneShootPoint.position, levelOneShootPoint.localRotation);

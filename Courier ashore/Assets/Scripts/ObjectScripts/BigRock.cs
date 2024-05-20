@@ -36,10 +36,10 @@ public class BigRock : MonoBehaviour
         switch (harvestLevel)
         {
             case 1:
-                harvestRate = 0.05f;
+                harvestRate = 0.04f;
                 break;
             case 2:
-                harvestRate = 0.03f;
+                harvestRate = 0.025f;
                 break;
             default:
                 harvestRate = 0.015f;
