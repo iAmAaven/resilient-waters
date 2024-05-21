@@ -67,7 +67,7 @@ public class ShadowTidesBoat : MonoBehaviour
 
     void ShootWater()
     {
-        GameObject newBullet = Instantiate(bulletPrefab, shootPoint.position, transform.localRotation);
+        GameObject newBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
 
         Vector2 direction = shootPoint.up;
         newBullet.GetComponent<EnemyBullet>().shootDirection = direction;
