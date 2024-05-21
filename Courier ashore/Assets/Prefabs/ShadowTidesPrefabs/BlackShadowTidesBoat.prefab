@@ -5173,7 +5173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 6
   graphics: {fileID: 8347214285873718072}
-  deathAudio: {fileID: 8300000, guid: 91001fb5f6158634d91bce30cf24dca1, type: 3}
   damageAudios:
   - {fileID: 8300000, guid: 17e28f2518dc5594886b0af7fc6c9ed9, type: 3}
   - {fileID: 8300000, guid: 178871cf360b0944e9646ce2a696a35d, type: 3}

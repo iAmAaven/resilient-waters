@@ -21,6 +21,7 @@ public class EnemyBullet : MonoBehaviour
     void Update()
     {
         rb.velocity = shootDirection * bulletSpeed;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     void OnTriggerEnter2D(Collider2D other)
