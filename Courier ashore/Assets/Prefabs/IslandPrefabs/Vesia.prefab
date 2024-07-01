@@ -2838,8 +2838,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: HOLD 'E' TO HARVEST
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
-  m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
+  m_sharedMaterial: {fileID: 4704281992840877591, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

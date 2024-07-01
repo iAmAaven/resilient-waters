@@ -61,14 +61,6 @@ public class HarvestUpgrades : MonoBehaviour
             if (harvestLevel >= maxUpgradeLevel)
             {
                 harvestLevelText.text = "MAX";
-                harvestRequiredWoodText.text = "MAX";
-                harvestRequiredStoneText.text = "MAX";
-                harvestRequiredCoalText.text = "MAX";
-                harvestRequiredIronText.text = "MAX";
-                harvestRequiredGoldText.text = "MAX";
-                harvestRequiredGemText.text = "MAX";
-                harvestRequiredCreditsText.text = "MAX";
-                return;
             }
             else
             {
@@ -91,13 +83,26 @@ public class HarvestUpgrades : MonoBehaviour
 
     public void RefreshRequirementTexts()
     {
-        harvestRequiredWoodText.text = harvestRequiredWood + "";
-        harvestRequiredStoneText.text = harvestRequiredStone + "";
-        harvestRequiredCoalText.text = harvestRequiredCoal + "";
-        harvestRequiredIronText.text = harvestRequiredIron + "";
-        harvestRequiredGoldText.text = harvestRequiredGold + "";
-        harvestRequiredGemText.text = harvestRequiredGem + "";
-        harvestRequiredCreditsText.text = harvestRequiredCredits + "";
+        if (harvestLevel < maxUpgradeLevel)
+        {
+            harvestRequiredWoodText.text = harvestRequiredWood + "";
+            harvestRequiredStoneText.text = harvestRequiredStone + "";
+            harvestRequiredCoalText.text = harvestRequiredCoal + "";
+            harvestRequiredIronText.text = harvestRequiredIron + "";
+            harvestRequiredGoldText.text = harvestRequiredGold + "";
+            harvestRequiredGemText.text = harvestRequiredGem + "";
+            harvestRequiredCreditsText.text = harvestRequiredCredits + "";
+        }
+        else
+        {
+            harvestRequiredWoodText.text = "MAX";
+            harvestRequiredStoneText.text = "MAX";
+            harvestRequiredCoalText.text = "MAX";
+            harvestRequiredIronText.text = "MAX";
+            harvestRequiredGoldText.text = "MAX";
+            harvestRequiredGemText.text = "MAX";
+            harvestRequiredCreditsText.text = "MAX";
+        }
     }
     public int LoadRequirement(string upgradeLevel, int requiredResource, TextMeshProUGUI levelText)
     {

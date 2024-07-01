@@ -199,11 +199,12 @@ MonoBehaviour:
     DENYING THE DELIVERY DOESN''T COST ANYTHING.'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &97154284917031410
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,11 +375,12 @@ MonoBehaviour:
     THAT HELP YOU WITH YOUR JOB...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &199424263821607121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,11 +2041,12 @@ MonoBehaviour:
   dialogueText: GOOD LUCK!
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &1016765829218161251
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,11 +3293,12 @@ MonoBehaviour:
     YOU THE WAY TO THE PICK UP POINT OF A PACKAGE AND TO THE RECEIVER OF SAID PACKAGE...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &1579298157696049960
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,11 +4882,12 @@ MonoBehaviour:
     * HOME''S LOCATION WITH'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &2151071760916553718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5808,11 +5813,12 @@ MonoBehaviour:
     DENYING THE DELIVERY DOESN''T COST ANYTHING.'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &2956046363194623419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6592,11 +6598,12 @@ MonoBehaviour:
     THE BOSS DOESN''T LIKE IT IF YOU FALL ASLEEP...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &3342174114343540676
 GameObject:
   m_ObjectHideFlags: 0
@@ -9118,11 +9125,12 @@ MonoBehaviour:
     ...IT PAYS BETTER, THOUGH...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5141142213686141146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9618,11 +9626,12 @@ MonoBehaviour:
     AND TO CHECK THE DELIVERY'S INFORMATION
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5292162857989187421
 GameObject:
   m_ObjectHideFlags: 0
@@ -10134,11 +10143,12 @@ MonoBehaviour:
     TIDES'' OR IT''S GONNA COST YOU'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5422320715073673352
 GameObject:
   m_ObjectHideFlags: 0
@@ -10346,11 +10356,12 @@ MonoBehaviour:
     REMEMBER: "NO CONTRABAND, CRIME IS BAD"'
   endChars: 21003f002e002a00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5428522881841076853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10515,11 +10526,12 @@ MonoBehaviour:
     A CUT OUT OF MY PAYCHECK, HE DID...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5451133233746806554
 GameObject:
   m_ObjectHideFlags: 0
@@ -10806,11 +10818,12 @@ MonoBehaviour:
     TO GET THEIR INFORMATION
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &5462182690178761203
 GameObject:
   m_ObjectHideFlags: 0
@@ -13009,11 +13022,12 @@ MonoBehaviour:
     THE BOTTOM LEFT CORNER (OR ''TAB'') TO OPEN THE DELIVERY APP'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &6594396567948700151
 GameObject:
   m_ObjectHideFlags: 0
@@ -14120,11 +14134,12 @@ MonoBehaviour:
     THE PACKAGE.'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &7128962060346830067
 GameObject:
   m_ObjectHideFlags: 0
@@ -14573,11 +14588,12 @@ MonoBehaviour:
     YOU''RE CAPABLE, BUT YOU KNOW HOW THE BOSS IS...'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
+  timeBetweenChars: 0.035
   pauseAfterEndChar: 0.1
   pauseAfterPauseChar: 0.075
   willClose: 0
   closeAfter: 0
+  textMesh: {fileID: 0}
 --- !u!1 &7531720346093316213
 GameObject:
   m_ObjectHideFlags: 0

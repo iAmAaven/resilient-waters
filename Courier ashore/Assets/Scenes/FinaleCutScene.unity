@@ -528,8 +528,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START CHALLENGE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
-  m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
+  m_sharedMaterial: {fileID: 4704281992840877591, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1033,6 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: 'Alright, you have performed very well this month, but I''m still
     not convinced you''re worthy of the glorious title of ''Employee of the Month''...
 
@@ -1043,12 +1044,12 @@ MonoBehaviour:
     many packages even in ONE DAY, so I doubt you can do it in 15 MINUTES... HAHAHAHAHA!"'
   endChars: 21003f002e00
   pauseChars: 2c003b003a00
-  timeBetweenChars: 0.05
-  pauseAfterEndChar: 0.1
-  pauseAfterPauseChar: 0.075
+  charDelay: 0.025
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &939502162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,8 +1079,8 @@ MonoBehaviour:
     your value. I should warn you though, nobody has ever managed to deliver that
     many packages even in ONE DAY, so I doubt you can do it in 15 MINUTES... HAHAHAHAHA!"'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
-  m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
+  m_sharedMaterial: {fileID: 4704281992840877591, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

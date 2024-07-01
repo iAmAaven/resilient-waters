@@ -301,15 +301,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: DON'T LET IT HAPPEN AGAIN.
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.15
-  pauseAfterEndChar: 1
-  pauseAfterPauseChar: 0.8
+  charDelay: 0.1
+  endCharDelay: 0.1
+  pauseCharDelay: 0.1
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &165552233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: DON'T LET IT HAPPEN AGAIN.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -396,7 +397,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &165552234
@@ -1031,15 +1032,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: UNBELIEVABLE!
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &1162203274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,7 +1064,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: UNBELIEVABLE!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1126,7 +1128,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1162203275
@@ -1197,7 +1199,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: DO YOU KNOW HOW MUCH MONEY I HAVE TO SPEND ON BOAT REPAIRS BECAUSE OF YOU?!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1261,7 +1263,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1254478058
@@ -1284,16 +1286,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: DO YOU KNOW HOW MUCH MONEY I HAVE TO SPEND ON BOAT REPAIRS BECAUSE
     OF YOU?!
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!1 &1325024614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,18 +1610,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: 'I''M GONNA HAVE TO TAKE THE COST OF THE BOAT OUT OF YOUR PAYCHECK!
 
     ...AND
     SOME EXTRA FOR SAVING YOU!'
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &2124634880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,7 +1648,7 @@ MonoBehaviour:
     ...AND
     SOME EXTRA FOR SAVING YOU!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1708,7 +1712,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2124634881
