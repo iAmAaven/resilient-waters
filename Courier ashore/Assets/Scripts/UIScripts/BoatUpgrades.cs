@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class BoatUpgrades : MonoBehaviour
 {
+    /*
+        
+        THIS CODE IS A F*NG MESS. DON'T USE THIS CODE AS LEARNING MATERIAL–IT'LL ONLY HURT YOU.
+        THERE WERE PROBABLY A MILLION BETTER WAYS TO ACHIEVE THE SAME THING I'VE DONE HERE,
+        BUT I'LL USE THE "IT WAS FOR A GAME JAM AND MADE WITH SERIOUS SLEEP DEPRIVATION" EXCUSE FOR THIS ONE.
+
+        I'VE TRIED MY BEST AT COMMENTING THE CODE.
+
+    */
+
     [Header("Upgrade levels")]
     public int boatSpeedLevel = 1;
     public TextMeshProUGUI boatSpeedLevelText;
@@ -50,16 +60,16 @@ public class BoatUpgrades : MonoBehaviour
     public ResourceInventory resourceInventory;
     public CreditManager creditManager;
 
+
+    // 
     void OnEnable()
     {
         LoadAllRequirements();
-        CheckOutBoat();
     }
 
     public void RepairBoat()
     {
         repairRequiredWood = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP", 10);
-        // int boatHP = PlayerPrefs.GetInt("BoatHP", 10);
 
         if (repairRequiredWood > 0
             && resourceInventory.woodAmount >= repairRequiredWood
@@ -71,13 +81,12 @@ public class BoatUpgrades : MonoBehaviour
             PlayerPrefs.SetInt("BoatHP", PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10);
             repairRequiredWoodText.text = repairRequiredWood + "";
 
-            StopCoroutine(repairDialogueText.TypeText());
-            repairDialogueText.textMesh.text = "There you go! Good as new...";
+            repairDialogueText.forceStop = true;
+            repairDialogueText.textMeshPro.text = "There you go! Good as new...";
             RefreshRequirementTexts();
         }
         else
         {
-            repairDialogueText.dialogueText = "Your boat seems fine to me";
             Debug.Log("Not enough resources or boat is at max HP");
         }
     }
@@ -87,11 +96,11 @@ public class BoatUpgrades : MonoBehaviour
 
         if (boatHP == PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10)
         {
-            repairDialogueText.dialogueText = "Your boat seems fine to me...";
+            repairDialogueText.textMeshPro.text = "Your boat seems fine to me...";
         }
         else
         {
-            repairDialogueText.dialogueText = "Woah!\n\nYour boat has taken some damage...\n\nLet me fix it for you";
+            repairDialogueText.textMeshPro.text = "Woah!\n\nYour boat has taken some damage...\n\nLet me fix it for you";
         }
     }
     public void UpgradeBoatSpeed()
@@ -118,19 +127,13 @@ public class BoatUpgrades : MonoBehaviour
             speedRequiredGold = RaisedRequirement(speedRequiredGold, speedRequiredGoldText);
             speedRequiredCredits = RaisedRequirement(speedRequiredCredits, speedRequiredCreditsText);
 
-            if (boatSpeedLevel >= maxLevel || boatSpeedLevel >= 3)
+            if (boatSpeedLevel < maxLevel)
             {
-                boatSpeedLevelText.text = "MAX";
-                speedRequiredWoodText.text = "MAX";
-                speedRequiredCoalText.text = "MAX";
-                speedRequiredGoldText.text = "MAX";
-                speedRequiredCreditsText.text = "MAX";
-
-                return;
+                boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
             }
             else
             {
-                boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
+                boatSpeedLevelText.text = "MAX";
             }
 
             RefreshRequirementTexts();
@@ -161,19 +164,13 @@ public class BoatUpgrades : MonoBehaviour
             gunRequiredGold = RaisedRequirement(gunRequiredGold, gunRequiredGoldText);
             gunRequiredCredits = RaisedRequirement(gunRequiredCredits, gunRequiredCreditsText);
 
-            if (waterGunLevel >= maxLevel || waterGunLevel >= 3)
+            if (waterGunLevel < maxLevel)
             {
-                waterGunLevelText.text = "MAX";
-                gunRequiredWoodText.text = "MAX";
-                gunRequiredIronText.text = "MAX";
-                gunRequiredGoldText.text = "MAX";
-                gunRequiredCreditsText.text = "MAX";
-
-                return;
+                waterGunLevelText.text = "LVL " + waterGunLevel;
             }
             else
             {
-                waterGunLevelText.text = "LVL " + waterGunLevel;
+                waterGunLevelText.text = "MAX";
             }
 
             RefreshRequirementTexts();
@@ -205,19 +202,13 @@ public class BoatUpgrades : MonoBehaviour
             durabRequiredIron = RaisedRequirement(durabRequiredIron, durabRequiredIronText);
             durabRequiredCredits = RaisedRequirement(durabRequiredCredits, durabRequiredCreditsText);
 
-            if (boatDurabilityLevel >= maxLevel || boatDurabilityLevel >= 3)
+            if (boatDurabilityLevel < maxLevel)
             {
-                boatDurabilityLevelText.text = "MAX";
-                durabRequiredWoodText.text = "MAX";
-                durabRequiredStoneText.text = "MAX";
-                durabRequiredIronText.text = "MAX";
-                durabRequiredCreditsText.text = "MAX";
-
-                return;
+                boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
             }
             else
             {
-                boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
+                boatDurabilityLevelText.text = "MAX";
             }
 
             RefreshRequirementTexts();
@@ -260,27 +251,14 @@ public class BoatUpgrades : MonoBehaviour
             buyBoatRequiredGem = RaisedRequirement(buyBoatRequiredGem, buyBoatRequiredGemText);
             buyBoatRequiredCredits = RaisedRequirement(buyBoatRequiredCredits, buyBoatRequiredCreditsText);
 
-            if (boatLevel >= 3)
-            {
-                boatLevelText.text = "MAX";
-
-                buyBoatRequiredWoodText.text = "MAX";
-                buyBoatRequiredStoneText.text = "MAX";
-                buyBoatRequiredCoalText.text = "MAX";
-                buyBoatRequiredIronText.text = "MAX";
-                buyBoatRequiredGoldText.text = "MAX";
-                buyBoatRequiredGemText.text = "MAX";
-                buyBoatRequiredCreditsText.text = "MAX";
-
-                return;
-            }
-            else
-            {
-                boatLevelText.text = "LVL " + boatLevel;
-                boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
-                waterGunLevelText.text = "LVL " + waterGunLevel;
-                boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
-            }
+            // if (boatLevel < 3)
+            // {
+            //     boatLevelText.text = "LVL " + boatLevel;
+            // }
+            // else
+            // {
+            //     boatLevelText.text = "MAX";
+            // }
 
             RefreshRequirementTexts();
         }
@@ -301,34 +279,114 @@ public class BoatUpgrades : MonoBehaviour
     {
         repairRequiredWoodText.text = PlayerPrefs.GetInt("BoatDurabilityLevel", 1) * 10 - PlayerPrefs.GetInt("BoatHP", 10) + "";
 
-        speedRequiredWoodText.text = speedRequiredWood + "";
-        speedRequiredCoalText.text = speedRequiredCoal + "";
-        speedRequiredGoldText.text = speedRequiredGold + "";
-        speedRequiredCreditsText.text = speedRequiredCredits + "";
+        if (boatSpeedLevel < maxLevel && maxLevel < 4)
+        {
+            boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
+            speedRequiredWoodText.text = speedRequiredWood + "";
+            speedRequiredCoalText.text = speedRequiredCoal + "";
+            speedRequiredGoldText.text = speedRequiredGold + "";
+            speedRequiredCreditsText.text = speedRequiredCredits + "";
+        }
+        else
+        {
+            if (maxLevel == 4 && boatSpeedLevel < 3)
+            {
+                boatSpeedLevelText.text = "LVL " + boatSpeedLevel;
+                speedRequiredWoodText.text = speedRequiredWood + "";
+                speedRequiredCoalText.text = speedRequiredCoal + "";
+                speedRequiredGoldText.text = speedRequiredGold + "";
+                speedRequiredCreditsText.text = speedRequiredCredits + "";
+            }
+            else
+            {
+                boatSpeedLevelText.text = "MAX";
+                speedRequiredWoodText.text = "MAX";
+                speedRequiredCoalText.text = "MAX";
+                speedRequiredGoldText.text = "MAX";
+                speedRequiredCreditsText.text = "MAX";
+            }
+        }
 
-        gunRequiredWoodText.text = gunRequiredWood + "";
-        gunRequiredIronText.text = gunRequiredIron + "";
-        gunRequiredGoldText.text = gunRequiredGold + "";
-        gunRequiredCreditsText.text = gunRequiredCredits + "";
+        if (waterGunLevel < maxLevel && maxLevel < 4)
+        {
+            waterGunLevelText.text = "LVL " + waterGunLevel;
+            gunRequiredWoodText.text = gunRequiredWood + "";
+            gunRequiredIronText.text = gunRequiredIron + "";
+            gunRequiredGoldText.text = gunRequiredGold + "";
+            gunRequiredCreditsText.text = gunRequiredCredits + "";
+        }
+        else
+        {
+            if (maxLevel == 4 && waterGunLevel < 3)
+            {
+                waterGunLevelText.text = "LVL " + waterGunLevel;
+                gunRequiredWoodText.text = gunRequiredWood + "";
+                gunRequiredIronText.text = gunRequiredIron + "";
+                gunRequiredGoldText.text = gunRequiredGold + "";
+                gunRequiredCreditsText.text = gunRequiredCredits + "";
+            }
+            else
+            {
+                waterGunLevelText.text = "MAX";
+                gunRequiredWoodText.text = "MAX";
+                gunRequiredIronText.text = "MAX";
+                gunRequiredGoldText.text = "MAX";
+                gunRequiredCreditsText.text = "MAX";
+            }
 
-        durabRequiredWoodText.text = durabRequiredWood + "";
-        durabRequiredStoneText.text = durabRequiredStone + "";
-        durabRequiredIronText.text = durabRequiredIron + "";
-        durabRequiredCreditsText.text = durabRequiredCredits + "";
+        }
 
-        buyBoatRequiredWoodText.text = buyBoatRequiredWood + "";
-        buyBoatRequiredStoneText.text = buyBoatRequiredStone + "";
-        buyBoatRequiredCoalText.text = buyBoatRequiredCoal + "";
-        buyBoatRequiredIronText.text = buyBoatRequiredIron + "";
-        buyBoatRequiredGoldText.text = buyBoatRequiredGold + "";
-        buyBoatRequiredGemText.text = buyBoatRequiredGem + "";
-        buyBoatRequiredCreditsText.text = buyBoatRequiredCredits + "";
+        if (boatDurabilityLevel < maxLevel && maxLevel < 4)
+        {
+            boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
+            durabRequiredWoodText.text = durabRequiredWood + "";
+            durabRequiredStoneText.text = durabRequiredStone + "";
+            durabRequiredIronText.text = durabRequiredIron + "";
+            durabRequiredCreditsText.text = durabRequiredCredits + "";
+        }
+        else
+        {
+            if (maxLevel == 4 && boatDurabilityLevel < 3)
+            {
+                boatDurabilityLevelText.text = "LVL " + boatDurabilityLevel;
+                durabRequiredWoodText.text = durabRequiredWood + "";
+                durabRequiredStoneText.text = durabRequiredStone + "";
+                durabRequiredIronText.text = durabRequiredIron + "";
+                durabRequiredCreditsText.text = durabRequiredCredits + "";
+            }
+            else
+            {
+                boatDurabilityLevelText.text = "MAX";
+                durabRequiredWoodText.text = "MAX";
+                durabRequiredStoneText.text = "MAX";
+                durabRequiredIronText.text = "MAX";
+                durabRequiredCreditsText.text = "MAX";
+            }
+        }
+
+        if (boatLevel < 3)
+        {
+            boatLevelText.text = "LVL " + boatLevel;
+            buyBoatRequiredWoodText.text = buyBoatRequiredWood + "";
+            buyBoatRequiredStoneText.text = buyBoatRequiredStone + "";
+            buyBoatRequiredCoalText.text = buyBoatRequiredCoal + "";
+            buyBoatRequiredIronText.text = buyBoatRequiredIron + "";
+            buyBoatRequiredGoldText.text = buyBoatRequiredGold + "";
+            buyBoatRequiredGemText.text = buyBoatRequiredGem + "";
+            buyBoatRequiredCreditsText.text = buyBoatRequiredCredits + "";
+        }
+        else
+        {
+            boatLevelText.text = "MAX";
+            buyBoatRequiredWoodText.text = "MAX";
+            buyBoatRequiredStoneText.text = "MAX";
+            buyBoatRequiredCoalText.text = "MAX";
+            buyBoatRequiredIronText.text = "MAX";
+            buyBoatRequiredGoldText.text = "MAX";
+            buyBoatRequiredGemText.text = "MAX";
+            buyBoatRequiredCreditsText.text = "MAX";
+        }
     }
-
-    // public void SaveRequirements(string prefsName, int requiredResource)
-    // {
-    //     PlayerPrefs.SetInt(prefsName, requiredResource);
-    // }
     public int LoadRequirement(string upgradeLevel, int requiredResource, TextMeshProUGUI levelText)
     {
         int resourceRequired = requiredResource;

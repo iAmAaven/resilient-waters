@@ -173,15 +173,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: DON'T LET IT HAPPEN AGAIN.
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.15
-  pauseAfterEndChar: 1
-  pauseAfterPauseChar: 0.8
+  charDelay: 0.1
+  endCharDelay: 0.1
+  pauseCharDelay: 0.1
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &17969511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: DON'T LET IT HAPPEN AGAIN.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -268,7 +269,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &17969512
@@ -329,16 +330,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: DO YOU KNOW HOW FAR BEYOND THE RESILIENT WATERS YOU WENT BECAUSE
     YOU FELL ASLEEP?!
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &127634284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +364,7 @@ MonoBehaviour:
   m_text: DO YOU KNOW HOW FAR BEYOND THE RESILIENT WATERS YOU WENT BECAUSE YOU FELL
     ASLEEP?!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -426,7 +428,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &127634285
@@ -624,16 +626,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: YOU PROBABLY FELL ASLEEP ON THE JOB, AS WELL! I'M GONNA HAVE TO CUT
     YOUR PAYCHECK!
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &264560762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,7 +660,7 @@ MonoBehaviour:
   m_text: YOU PROBABLY FELL ASLEEP ON THE JOB, AS WELL! I'M GONNA HAVE TO CUT YOUR
     PAYCHECK!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -721,7 +724,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &264560763
@@ -782,15 +785,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e0c5450771f6f46a0cf2ae18da5f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
   dialogueText: UNBELIEVABLE!
   endChars: 2e0021003f00
   pauseChars: 
-  timeBetweenChars: 0.01
-  pauseAfterEndChar: 0.075
-  pauseAfterPauseChar: 0.05
+  charDelay: 0.015
+  endCharDelay: 0.1
+  pauseCharDelay: 0.05
   willClose: 0
   closeAfter: 0
-  textMesh: {fileID: 0}
+  forceStop: 0
 --- !u!114 &382741669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +817,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: UNBELIEVABLE!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6eda759278aafbe47b2f1a162bc02ffd, type: 2}
   m_sharedMaterial: {fileID: 2335246003605577197, guid: b768ba80f89f8ce46886b55bada54262, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -877,7 +881,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &382741670

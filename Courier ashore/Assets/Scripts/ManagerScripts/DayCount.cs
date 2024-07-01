@@ -7,6 +7,7 @@ public class DayCount : MonoBehaviour
 {
     public int dayCount;
     public bool isResilientWaters = false;
+    public bool isFinale = false;
     public TextMeshProUGUI dayText;
 
     void Start()
@@ -25,7 +26,7 @@ public class DayCount : MonoBehaviour
     }
     public void AddDay()
     {
-        if (dayCount == 0)
+        if (dayCount == 0 && isFinale == false)
         {
             FindObjectOfType<TutorialManager>().StartTutorial();
         }

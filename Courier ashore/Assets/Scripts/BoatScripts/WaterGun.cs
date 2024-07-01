@@ -26,7 +26,7 @@ public class WaterGun : MonoBehaviour
     {
         oneShotAudio = GameObject.FindWithTag("OneShotAudio").GetComponent<AudioSource>();
 
-        fireRate = (float)PlayerPrefs.GetInt("WaterGunLevel", 1);
+        fireRate = (float)PlayerPrefs.GetInt("WaterGunLevel", 1) + 1;
         boatMovement = GetComponentInParent<BoatMovement>();
         boat = GetComponentInParent<Boat>();
     }
