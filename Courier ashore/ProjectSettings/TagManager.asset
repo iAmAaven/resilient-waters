@@ -9,6 +9,9 @@ TagManager:
   - Danger
   - Enemy
   - OneShotAudio
+  - NPC
+  - Package
+  - HomeIsland
   layers:
   - Default
   - TransparentFX

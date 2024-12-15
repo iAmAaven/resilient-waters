@@ -5238,8 +5238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856d673a7c469254da86b05dbab48a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 4.5
-  maxSpeed: 4.5
+  acceleration: 6
+  maxSpeed: 6
   rotationSpeed: 90
   maxTorque: 90
   canPlayerMove: 1

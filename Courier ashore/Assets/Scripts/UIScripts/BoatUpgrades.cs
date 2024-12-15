@@ -119,7 +119,7 @@ public class BoatUpgrades : MonoBehaviour
 
             boatSpeedLevel++;
 
-            PlayerPrefs.SetFloat("BoatSpeed", 5f + boatSpeedLevel);
+            PlayerPrefs.SetFloat("BoatSpeed", 6f + boatSpeedLevel);
             PlayerPrefs.SetInt("BoatSpeedLevel", boatSpeedLevel);
 
             speedRequiredWood = RaisedRequirement(speedRequiredWood, speedRequiredWoodText);
@@ -251,14 +251,6 @@ public class BoatUpgrades : MonoBehaviour
             buyBoatRequiredGem = RaisedRequirement(buyBoatRequiredGem, buyBoatRequiredGemText);
             buyBoatRequiredCredits = RaisedRequirement(buyBoatRequiredCredits, buyBoatRequiredCreditsText);
 
-            // if (boatLevel < 3)
-            // {
-            //     boatLevelText.text = "LVL " + boatLevel;
-            // }
-            // else
-            // {
-            //     boatLevelText.text = "MAX";
-            // }
 
             RefreshRequirementTexts();
         }

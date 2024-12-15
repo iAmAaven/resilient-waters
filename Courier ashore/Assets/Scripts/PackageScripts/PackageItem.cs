@@ -13,22 +13,24 @@ public class PackageItem : MonoBehaviour
     private IslandPackageManager islandPackageManager;
     public GameObject graphics;
     public Collider2D triggerCollider;
+
+    // HIDDEN
     [HideInInspector] public GameObject receiverNPC;
     [HideInInspector] public GameObject tracker;
+    [HideInInspector] public int deliveryHours = 0;
 
+    // PRIVATES
     private Transform playerPos;
     private GameObject packageTracker;
-    private BoatMovement boatMovement;
-    private DayCycle dayCycle;
-    private int deliveryHours = 0;
     private DeliveryUI deliveryUI;
     void Start()
     {
         deliveryUI = FindObjectOfType<DeliveryUI>();
-        boatMovement = FindObjectOfType<BoatMovement>();
         playerPos = GameObject.FindWithTag("Player").transform;
+
         packageTracker = Instantiate(packageTrackerPrefab, playerPos.position, Quaternion.identity);
         packageTracker.GetComponent<PackageTracker>().target = transform;
+        packageTracker.GetComponent<PackageTracker>().packageItem = this;
 
         islandPackageManager = FindObjectOfType<IslandPackageManager>();
     }
@@ -115,7 +117,9 @@ public class PackageItem : MonoBehaviour
             deliveryHours++;
             if (deliveryHours >= packageInfo.deliveryTime)
             {
-                PackageNotDeliveredOnTime();
+                if (packageInfo.packageDelivered == false)
+                    PackageNotDeliveredOnTime();
+
                 break;
             }
         }
