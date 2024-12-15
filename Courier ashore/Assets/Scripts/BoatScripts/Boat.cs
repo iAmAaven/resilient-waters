@@ -51,9 +51,13 @@ public class Boat : MonoBehaviour
                 isCarryingContraband = true;
                 FindObjectOfType<ContrabandManager>().CarryingContraband(isCarryingContraband);
             }
+
             GameObject newTracker = Instantiate(receiverTrackerPrefab, transform.position, Quaternion.identity);
             packageItem.tracker = newTracker;
-            newTracker.GetComponent<PackageTracker>().target = packageItem.receiverNPC.transform;
+
+            PackageTracker newPackageTracker = newTracker.GetComponent<PackageTracker>();
+            newPackageTracker.target = packageItem.receiverNPC.transform;
+            newPackageTracker.packageItem = packageItem;
         }
     }
     public void RemovePackage(PackageItem packageItem)

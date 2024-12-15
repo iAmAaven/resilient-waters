@@ -30,6 +30,7 @@ public class Package : MonoBehaviour
 
 
     // STATUS MANAGEMENT OF THE PACKAGE
+    [HideInInspector] public bool isFastDelivery = false;
     [HideInInspector] public bool demandedMorePay = false;
     [HideInInspector] public bool packageAccepted = false;
     [HideInInspector] public bool packagePickedUp = false;
@@ -63,9 +64,10 @@ public class Package : MonoBehaviour
     void RandomDeliveryTime()
     {
         float randomChance = Random.Range(0f, 1f);
-        if (randomChance < 0.15f)
+        if (randomChance < 0.175f)
         {
             deliveryTime = 2;
+            isFastDelivery = true;
             fastDelivery.SetActive(true);
         }
         else

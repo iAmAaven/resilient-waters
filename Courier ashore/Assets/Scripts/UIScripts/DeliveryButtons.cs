@@ -70,6 +70,7 @@ public class DeliveryButtons : MonoBehaviour
             deniesLeft--;
             denySlider.value = deniesLeft;
             creditManager.AddCredits(-3);
+            DisableButtons();
             FindObjectOfType<PackageDealer>().DealNewPackage();
             Destroy(_activePackage.gameObject);
             deliveryUI.ClearPackageInfo();

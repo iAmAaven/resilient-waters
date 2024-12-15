@@ -10,11 +10,11 @@ public class HarvestUpgrades : MonoBehaviour
     public int harvestLevel;
     public int harvestRequiredCredits;
     public int harvestRequiredWood, harvestRequiredStone, harvestRequiredCoal,
-        harvestRequiredIron, harvestRequiredGold, harvestRequiredGem;
+        harvestRequiredIron, harvestRequiredGold;
 
     public TextMeshProUGUI harvestRequiredWoodText, harvestRequiredStoneText,
-        harvestRequiredCoalText, harvestRequiredIronText, harvestRequiredGoldText,
-        harvestRequiredGemText, harvestRequiredCreditsText;
+        harvestRequiredCoalText, harvestRequiredIronText,
+        harvestRequiredGoldText, harvestRequiredCreditsText;
 
     public int maxUpgradeLevel = 3;
 
@@ -36,15 +36,13 @@ public class HarvestUpgrades : MonoBehaviour
             && resourceInventory.stoneAmount >= harvestRequiredStone
             && resourceInventory.coalAmount >= harvestRequiredCoal
             && resourceInventory.ironAmount >= harvestRequiredIron
-            && resourceInventory.goldAmount >= harvestRequiredGold
-            && resourceInventory.gemAmount >= harvestRequiredGem)
+            && resourceInventory.goldAmount >= harvestRequiredGold)
         {
             resourceInventory.woodAmount -= harvestRequiredWood;
             resourceInventory.stoneAmount -= harvestRequiredStone;
             resourceInventory.coalAmount -= harvestRequiredCoal;
             resourceInventory.ironAmount -= harvestRequiredIron;
             resourceInventory.goldAmount -= harvestRequiredGold;
-            resourceInventory.gemAmount -= harvestRequiredGem;
             creditManager.credits -= harvestRequiredCredits;
 
             harvestLevel++;
@@ -55,7 +53,6 @@ public class HarvestUpgrades : MonoBehaviour
             harvestRequiredCoal = RaisedRequirement(harvestRequiredCoal, harvestRequiredCoalText);
             harvestRequiredIron = RaisedRequirement(harvestRequiredIron, harvestRequiredIronText);
             harvestRequiredGold = RaisedRequirement(harvestRequiredGold, harvestRequiredGoldText);
-            harvestRequiredGem = RaisedRequirement(harvestRequiredGem, harvestRequiredGemText);
             harvestRequiredCredits = RaisedRequirement(harvestRequiredCredits, harvestRequiredCreditsText);
 
             if (harvestLevel >= maxUpgradeLevel)
@@ -90,7 +87,6 @@ public class HarvestUpgrades : MonoBehaviour
             harvestRequiredCoalText.text = harvestRequiredCoal + "";
             harvestRequiredIronText.text = harvestRequiredIron + "";
             harvestRequiredGoldText.text = harvestRequiredGold + "";
-            harvestRequiredGemText.text = harvestRequiredGem + "";
             harvestRequiredCreditsText.text = harvestRequiredCredits + "";
         }
         else
@@ -100,7 +96,6 @@ public class HarvestUpgrades : MonoBehaviour
             harvestRequiredCoalText.text = "MAX";
             harvestRequiredIronText.text = "MAX";
             harvestRequiredGoldText.text = "MAX";
-            harvestRequiredGemText.text = "MAX";
             harvestRequiredCreditsText.text = "MAX";
         }
     }
@@ -135,7 +130,6 @@ public class HarvestUpgrades : MonoBehaviour
         harvestRequiredCoal = LoadRequirement("HarvestLevel", harvestRequiredCoal, harvestLevelText);
         harvestRequiredIron = LoadRequirement("HarvestLevel", harvestRequiredIron, harvestLevelText);
         harvestRequiredGold = LoadRequirement("HarvestLevel", harvestRequiredGold, harvestLevelText);
-        harvestRequiredGem = LoadRequirement("HarvestLevel", harvestRequiredGem, harvestLevelText);
         harvestRequiredCredits = LoadRequirement("HarvestLevel", harvestRequiredCredits, harvestLevelText);
 
         RefreshRequirementTexts();

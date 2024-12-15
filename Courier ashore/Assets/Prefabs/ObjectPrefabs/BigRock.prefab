@@ -561,7 +561,7 @@ MonoBehaviour:
   harvestRate: 0.03
   coalChance: 0.75
   ironChance: 0.5
-  goldChance: 0.25
+  goldChance: 0.3
   harvestCanvas: {fileID: 4576671291053428179}
   harvestProgressBar: {fileID: 563217825567516071}
   whiteOutline: {fileID: 4649072029908608227}

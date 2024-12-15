@@ -14,6 +14,7 @@ public class DayCycle : MonoBehaviour
     public TextMeshProUGUI timeText;
     public bool shiftStarted = false;
     public bool shiftFinished = false;
+    public GameObject timeWarning;
 
     [Header("Lighting")]
     public Light2D sunlight;
@@ -91,7 +92,7 @@ public class DayCycle : MonoBehaviour
                     NovaPassedOut();
                     return;
                 }
-                else if (currentHour == dayShiftPassOutHour - 1 && isTextFlashing == false)
+                else if ((currentHour == dayShiftPassOutHour - 2 || currentHour == dayShiftPassOutHour - 1) && isTextFlashing == false)
                 {
                     StartCoroutine(TextFlashing());
                 }
@@ -107,7 +108,7 @@ public class DayCycle : MonoBehaviour
                 {
                     NovaPassedOut();
                 }
-                else if (currentHour == nightShiftPassOutHour - 1 && isTextFlashing == false)
+                else if ((currentHour == nightShiftPassOutHour - 2 || currentHour == nightShiftPassOutHour - 1) && isTextFlashing == false)
                 {
                     StartCoroutine(TextFlashing());
                 }
@@ -147,6 +148,7 @@ public class DayCycle : MonoBehaviour
     IEnumerator TextFlashing()
     {
         isTextFlashing = true;
+        timeWarning.SetActive(true);
 
         for (int i = 0; i < 20; i++)
         {

@@ -178,10 +178,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7581664621032711343}
   - component: {fileID: 5543158704564750655}
-  - component: {fileID: 4625133562507649047}
+  - component: {fileID: -3340275084572290246}
+  - component: {fileID: 3679502772385055372}
   m_Layer: 0
   m_Name: PackageItem
-  m_TagString: Untagged
+  m_TagString: Package
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,11 +221,39 @@ MonoBehaviour:
   packageTrackerPrefab: {fileID: 3633617876576980743, guid: 128d85b9f3126c34a82e00083383d4d9, type: 3}
   destinationIsland: {fileID: 0}
   graphics: {fileID: 111840550102954540}
-  triggerCollider: {fileID: 4625133562507649047}
+  triggerCollider: {fileID: 3679502772385055372}
   receiverNPC: {fileID: 0}
   tracker: {fileID: 0}
---- !u!58 &4625133562507649047
-CircleCollider2D:
+  deliveryHours: 0
+--- !u!50 &-3340275084572290246
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615417395834090127}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!61 &3679502772385055372
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -255,6 +284,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 4
+  m_Size: {x: 8, y: 8}
+  m_EdgeRadius: 0

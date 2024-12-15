@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2971148795904619726}
   - component: {fileID: 5849680281648482668}
-  m_Layer: 8
+  - component: {fileID: 5919786163291049363}
+  m_Layer: 0
   m_Name: HomeIslandTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +47,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  timeLeftText: {fileID: 0}
+  gfx: {fileID: 5849264171982705449}
+  fastDeliveryIcon: {fileID: 0}
+  normalTrackerSprite: {fileID: 21300000, guid: 06fb5cc2796d6664e88207e81c2805c4, type: 3}
+  ballTrackerSprite: {fileID: 21300000, guid: 72f247e14ae5a164d9753650487af25a, type: 3}
+  packageItem: {fileID: 0}
   rotationSpeed: 100
+  isPackageTracker: 0
+  isHomeIslandTracker: 1
+--- !u!58 &5919786163291049363
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633617876576980743}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7
 --- !u!1 &5849264171982705449
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3464926089122829356}
   - component: {fileID: 4335714630967421515}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +117,8 @@ Transform:
   m_GameObject: {fileID: 5849264171982705449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2971148795904619726}
@@ -117,9 +161,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 622349369
-  m_SortingLayer: -2
-  m_SortingOrder: 9
+  m_SortingLayerID: -1961783641
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 06fb5cc2796d6664e88207e81c2805c4, type: 3}
   m_Color: {r: 0.42320353, g: 0.90943396, b: 0.3002847, a: 1}
   m_FlipX: 0

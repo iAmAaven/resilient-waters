@@ -13,9 +13,10 @@ public class BoatChild : MonoBehaviour
         boatMovement.boatAnim = animator;
         parentBoat.graphics = gfx;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnColliderEnter2D(Collider2D collision)
     {
-        if (Time.time >= parentBoat.hitTimer && collision.gameObject.tag == "Object")
+        if (Time.time >= parentBoat.hitTimer
+            && (collision.gameObject.tag == "Object" || collision.gameObject.tag == "Enemy"))
         {
             if (parentBoat.rb.velocity.magnitude >= parentBoat.dangerousBoatSpeed)
             {
